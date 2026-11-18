@@ -8,8 +8,8 @@ interface EventCategoryPickerProps {
 export default function EventCategoryPicker({ value, onChange }: EventCategoryPickerProps) {
   return (
     <div>
-      <label className="block text-sm font-bold text-[#303330] mb-2.5">
-        Categoría <span className="text-[#ac3434]">*</span>
+      <label className="mb-2.5 block text-sm font-bold text-on-surface">
+        Categoría <span className="text-error">*</span>
       </label>
       <div className="flex flex-wrap gap-2.5">
         {EVENT_CATEGORIES.map((category) => {
@@ -20,8 +20,10 @@ export default function EventCategoryPicker({ value, onChange }: EventCategoryPi
               type="button"
               onClick={() => onChange(category.id)}
               className={[
-                "px-4 py-2.5 rounded-full text-sm font-semibold transition-colors flex items-center gap-1.5",
-                isActive ? "bg-[#006789] text-white" : "bg-[#f4f4f0] hover:bg-[#eeeeea] text-[#303330]",
+                "flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-semibold transition-colors",
+                isActive
+                  ? "bg-primary text-on-primary"
+                  : "bg-surface-container-high text-on-surface hover:bg-surface-container-highest",
               ].join(" ")}
             >
               {isActive && <span className="material-symbols-outlined text-base">check</span>}

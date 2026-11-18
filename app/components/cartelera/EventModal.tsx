@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { MapPin, X } from "lucide-react";
 import { getEventApiMeta } from "@/data/eventCategories";
 import { formatCalendarDateLong, formatEventSchedule } from "@/lib/date";
 import type { EventApiResponse } from "@/types/event";
@@ -38,14 +39,14 @@ export default function EventModal({ date, events, onClose }: EventModalProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="event-modal-title"
-        className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-[1.5rem] bg-surface-container-lowest p-6 shadow-[0_30px_80px_-20px_rgba(48,51,48,0.45)]"
+        className="max-h-[85dvh] w-full max-w-lg overflow-y-auto rounded-[1.5rem] border border-outline-variant/40 bg-surface-container-lowest p-5 shadow-[0_30px_80px_-20px_rgba(31,48,56,0.45)] sm:rounded-[1.75rem] sm:p-6"
       >
         <div className="mb-5 flex items-start justify-between gap-4">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary">
               Eventos del día
             </p>
-            <h3 id="event-modal-title" className="mt-1 text-xl font-extrabold text-on-surface">
+            <h3 id="event-modal-title" className="mt-1 font-display text-xl font-extrabold text-on-surface">
               {formatCalendarDateLong(date)}
             </h3>
           </div>
@@ -53,9 +54,9 @@ export default function EventModal({ date, events, onClose }: EventModalProps) {
             type="button"
             onClick={onClose}
             aria-label="Cerrar detalle del evento"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface-container text-on-surface-variant transition-colors hover:bg-surface-container-high"
+            className="grid size-11 shrink-0 place-items-center rounded-full bg-surface-container text-on-surface-variant transition-colors hover:bg-surface-container-high"
           >
-            <span className="material-symbols-outlined text-xl">close</span>
+            <X className="size-4" aria-hidden="true" />
           </button>
         </div>
 
@@ -72,6 +73,8 @@ export default function EventModal({ date, events, onClose }: EventModalProps) {
                     src={event.imageUrl}
                     alt={`Imagen de ${event.title}`}
                     className="h-40 w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 )}
                 <div className="space-y-2 p-4">
@@ -83,10 +86,10 @@ export default function EventModal({ date, events, onClose }: EventModalProps) {
                       {formatEventSchedule(event)}
                     </span>
                   </div>
-                  <h4 className="text-lg font-extrabold leading-snug text-on-surface">{event.title}</h4>
+                  <h4 className="font-display text-lg font-extrabold leading-snug text-on-surface">{event.title}</h4>
                   {event.location && (
-                    <p className="flex items-center gap-1 text-sm text-on-surface-variant">
-                      <span className="material-symbols-outlined text-[18px]">location_on</span>
+                    <p className="flex items-center gap-1.5 text-sm text-on-surface-variant">
+                      <MapPin className="size-4 shrink-0" aria-hidden="true" />
                       {event.location}
                     </p>
                   )}

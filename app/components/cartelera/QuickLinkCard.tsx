@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 interface QuickLinkCardProps {
@@ -18,26 +18,37 @@ export default function QuickLinkCard({
   bgColor,
 }: QuickLinkCardProps) {
   const isExternal = /^https?:\/\//.test(href);
+  const isProtocolLink = /^(https?:\/\/|mailto:|tel:)/.test(href);
 
   const content = (
     <>
-      <span className={`icon-tile size-14 ${bgColor} ${iconColor}`} aria-hidden="true">
-        <Icon className="size-7" strokeWidth={2.1} />
+      <span
+        className={`icon-tile size-11 shrink-0 sm:size-14 ${bgColor} ${iconColor}`}
+        aria-hidden="true"
+      >
+        <Icon className="size-5 sm:size-7" strokeWidth={2.1} />
       </span>
-      <span className="font-display text-sm font-extrabold leading-snug text-on-surface">
+      <span className="min-w-0 flex-1 font-display text-sm font-extrabold leading-snug text-on-surface sm:flex-none sm:text-center">
         {title}
       </span>
-      <ArrowUpRight
-        className="absolute right-4 top-4 size-4 text-on-surface-variant/50 opacity-0 transition-opacity group-hover:opacity-100"
-        aria-hidden="true"
-      />
+      {isExternal ? (
+        <ArrowUpRight
+          className="ml-auto size-4 shrink-0 text-on-surface-variant/60 sm:absolute sm:right-4 sm:top-4 sm:ml-0 sm:opacity-0 sm:transition-opacity sm:group-hover:opacity-100"
+          aria-hidden="true"
+        />
+      ) : (
+        <ArrowRight
+          className="ml-auto size-4 shrink-0 text-on-surface-variant/60 transition-transform group-hover:translate-x-0.5 sm:absolute sm:right-4 sm:top-4 sm:ml-0 sm:opacity-0 sm:transition-all sm:group-hover:opacity-100"
+          aria-hidden="true"
+        />
+      )}
     </>
   );
 
   const className =
-    'card-clay group flex flex-col items-center gap-3 p-6 text-center';
+    'card-clay group relative flex h-full flex-row items-center justify-start gap-3 p-4 text-left sm:flex-col sm:justify-center sm:p-6 sm:text-center';
 
-  if (!isExternal) {
+  if (!isProtocolLink) {
     return (
       <Link href={href} className={className}>
         {content}
@@ -46,7 +57,11 @@ export default function QuickLinkCard({
   }
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+    <a
+      href={href}
+      {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      className={className}
+    >
       {content}
     </a>
   );

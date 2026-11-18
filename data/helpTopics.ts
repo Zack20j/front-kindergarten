@@ -8,7 +8,7 @@ export const HELP_TOPICS: HelpTopic[] = [
   {
     icon: "cell_tower",
     title: "Elige tus canales",
-    description: "Activa Telegram, Facebook o Instagram para publicar en varios sitios a la vez.",
+    description: "La publicación aparece en la web y puedes compartirla también por Telegram.",
   },
   {
     icon: "edit_note",

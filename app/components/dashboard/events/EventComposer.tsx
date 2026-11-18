@@ -147,15 +147,17 @@ export default function EventComposer() {
     <>
       <div className="max-w-6xl mx-auto px-6 md:px-12 py-8 pb-32">
         <div className="mb-8 max-w-2xl">
-          <h1 className="text-[2rem] font-extrabold text-[#303330] tracking-tight mb-3">Nuevo Evento</h1>
-          <p className="text-[1.0625rem] text-[#5d605c] leading-relaxed">
+          <h1 className="mb-3 font-display text-[2rem] font-extrabold tracking-tight text-balance text-on-surface">
+            Nuevo Evento
+          </h1>
+          <p className="text-[1.0625rem] leading-relaxed text-on-surface-variant">
             Crea un evento de calendario o una efeméride para publicarla en la cartelera informativa del colegio.
           </p>
         </div>
 
         {errorMessage && (
-          <div className="mb-8 max-w-2xl flex items-start gap-3 bg-[#fbeaea] border border-[#e9b8b8] text-[#ac3434] rounded-[1rem] px-5 py-4">
-            <span className="material-symbols-outlined text-[20px]">error</span>
+          <div className="mb-8 flex max-w-2xl items-start gap-3 rounded-2xl border border-error/30 bg-error-container/40 px-5 py-4 text-on-error-container">
+            <span className="material-symbols-outlined text-[20px] text-error">error</span>
             <p className="text-sm font-semibold">{errorMessage}</p>
           </div>
         )}
@@ -174,13 +176,13 @@ export default function EventComposer() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           <div className="lg:col-span-7 space-y-8">
-            <section className="bg-white rounded-[1rem] p-8 shadow-[0_20px_40px_-10px_rgba(48,51,48,0.06)]">
-              <h2 className="text-[1.25rem] font-semibold text-[#303330] mb-6">¿Qué vas a publicar?</h2>
+            <section className="rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-6 md:p-8 dark:bg-surface-container-low">
+              <h2 className="mb-6 text-[1.25rem] font-bold text-on-surface">¿Qué vas a publicar?</h2>
               <EventTypeToggle value={form.kind} onChange={(kind) => update("kind", kind)} />
             </section>
 
-            <section className="bg-white rounded-[1rem] p-8 shadow-[0_20px_40px_-10px_rgba(48,51,48,0.06)] space-y-6">
-              <h2 className="text-[1.25rem] font-semibold text-[#303330]">Datos del evento</h2>
+            <section className="space-y-6 rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-6 md:p-8 dark:bg-surface-container-low">
+              <h2 className="text-[1.25rem] font-bold text-on-surface">Datos del evento</h2>
               <EventTitleInput value={form.title} onChange={(title) => update("title", title)} />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <EventDateInput value={form.date} onChange={(date) => update("date", date)} />
@@ -190,8 +192,8 @@ export default function EventComposer() {
             </section>
 
             {isEphemeris && (
-              <section className="bg-white rounded-[1rem] p-8 shadow-[0_20px_40px_-10px_rgba(48,51,48,0.06)] space-y-6">
-                <h2 className="text-[1.25rem] font-semibold text-[#303330]">Foto y mensaje</h2>
+              <section className="space-y-6 rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-6 md:p-8 dark:bg-surface-container-low">
+                <h2 className="text-[1.25rem] font-bold text-on-surface">Foto y mensaje</h2>
                 <EventPhotoUpload
                   image={form.image}
                   uploading={isUploadingPhoto}
@@ -205,7 +207,7 @@ export default function EventComposer() {
               </section>
             )}
 
-            <section className="bg-white rounded-[1rem] p-6 shadow-[0_20px_40px_-10px_rgba(48,51,48,0.06)]">
+            <section className="rounded-2xl border border-outline-variant/50 bg-surface-container-lowest dark:bg-surface-container-low p-5 md:p-6">
               <EventHighlightToggle
                 checked={form.highlighted}
                 onChange={(highlighted) => update("highlighted", highlighted)}

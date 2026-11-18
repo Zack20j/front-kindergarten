@@ -38,7 +38,7 @@ export default function ContactCard({
   const palette = TONES[tone];
 
   return (
-    <article className="card-clay relative overflow-hidden p-7 md:p-8">
+    <article className="card-clay relative overflow-hidden p-5 sm:p-7 md:p-8">
       <span aria-hidden="true" className={`absolute inset-x-0 top-0 h-1.5 ${palette.line}`} />
 
       <div className="flex items-center gap-4 border-b border-outline-variant/40 pb-5">

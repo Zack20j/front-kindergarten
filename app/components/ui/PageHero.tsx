@@ -49,7 +49,7 @@ export default function PageHero({
         <div className="absolute inset-0 bg-dots opacity-[0.35]" />
       </div>
 
-      <div className="relative mx-auto flex max-w-4xl flex-col items-center gap-4 px-6 pb-14 pt-10 text-center md:pb-20 md:pt-14">
+      <div className="relative mx-auto flex max-w-4xl flex-col items-center gap-4 px-5 pb-10 pt-8 text-center sm:px-6 sm:pb-14 md:pb-20 md:pt-14">
         <span
           className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[0.72rem] font-extrabold uppercase tracking-[0.16em] ${BADGES[tone]}`}
         >
@@ -61,12 +61,12 @@ export default function PageHero({
           {badge}
         </span>
 
-        <h1 className="font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-balance text-on-surface sm:text-5xl md:text-6xl">
+        <h1 className="text-balance font-display text-page font-extrabold text-on-surface">
           {title}
         </h1>
 
         {description && (
-          <p className="max-w-2xl text-base font-medium leading-relaxed text-on-surface-variant md:text-lg">
+          <p className="max-w-2xl text-lead font-medium text-on-surface-variant">
             {description}
           </p>
         )}

@@ -2,7 +2,7 @@ import type { ChannelPreviewProps } from "./types";
 
 export default function FacebookPreview({ schoolName, content, media, timestamp }: ChannelPreviewProps) {
   return (
-    <div className="bg-[#e4ebf0] rounded-[1rem] p-4 h-[400px] overflow-y-auto">
+    <div className="h-[400px] overflow-y-auto rounded-2xl bg-surface-container p-4">
       <div className="bg-white rounded-[0.75rem] shadow-sm overflow-hidden">
         <div className="flex items-center gap-2 p-3">
           <div className="w-9 h-9 rounded-full bg-[#1877F2] text-white flex items-center justify-center font-bold text-sm">

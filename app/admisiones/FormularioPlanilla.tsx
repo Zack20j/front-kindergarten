@@ -47,7 +47,7 @@ export const FormularioPlanilla: React.FC<FormularioPlanillaProps> = ({
   };
 
   return (
-    <div className="card-clay flex h-full flex-col p-6">
+    <div className="card-clay flex h-full flex-col p-5 sm:p-6">
       <div className="flex items-center gap-3 border-b border-outline-variant/40 pb-4">
         <span className="grid size-11 place-items-center rounded-xl bg-primary-container text-primary">
           <ClipboardList className="size-5" aria-hidden="true" />

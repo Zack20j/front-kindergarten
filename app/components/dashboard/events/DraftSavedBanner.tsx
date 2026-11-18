@@ -8,19 +8,19 @@ interface DraftSavedBannerProps {
  */
 export default function DraftSavedBanner({ onDismiss }: DraftSavedBannerProps) {
   return (
-    <div className="flex items-center justify-between gap-4 bg-[#eaf8fd] border border-[#c9dce2] text-[#006789] rounded-[1rem] px-5 py-4">
+    <div className="flex items-center justify-between gap-4 rounded-2xl border border-primary/30 bg-primary-container/40 px-5 py-4 text-on-primary-container">
       <div className="flex items-center gap-3">
         <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
         <div>
           <p className="font-bold text-sm">Borrador guardado</p>
-          <p className="text-xs text-[#5d605c]">Aún no es visible para las familias.</p>
+          <p className="text-xs text-on-primary-container/80">Aún no es visible para las familias.</p>
         </div>
       </div>
       <button
         type="button"
         onClick={onDismiss}
         aria-label="Cerrar aviso"
-        className="w-8 h-8 rounded-full flex items-center justify-center text-[#006789] hover:bg-[rgba(0,103,137,0.1)] transition-colors"
+        className="flex size-8 items-center justify-center rounded-full text-on-primary-container transition-colors hover:bg-primary/10"
       >
         <span className="material-symbols-outlined text-lg">close</span>
       </button>

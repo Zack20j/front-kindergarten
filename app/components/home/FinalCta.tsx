@@ -4,9 +4,9 @@ import Reveal from '../ui/Reveal';
 
 export default function FinalCta() {
   return (
-    <section className="mx-auto w-full max-w-7xl px-6 py-16 md:py-20">
+    <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 md:py-20">
       <Reveal>
-        <div className="relative overflow-hidden rounded-[2.25rem] bg-primary px-6 py-12 text-on-primary shadow-[0_40px_80px_-46px_rgba(12,108,139,0.75)] sm:px-10 md:rounded-[2.75rem] md:px-14 md:py-16">
+        <div className="relative overflow-hidden rounded-[1.75rem] bg-primary px-5 py-10 text-on-primary shadow-[0_40px_80px_-46px_rgba(12,108,139,0.75)] sm:rounded-[2.25rem] sm:px-10 md:rounded-[2.75rem] md:px-14 md:py-16">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0">
             <div className="blob-shape -right-20 -top-24 h-72 w-72 bg-primary-container/30 blur-2xl" />
             <div className="blob-shape -bottom-28 left-1/3 h-64 w-64 bg-sun/20 blur-3xl" />
@@ -20,10 +20,10 @@ export default function FinalCta() {
                 <Sparkles className="size-3.5 text-sun" aria-hidden="true" />
                 Ven a conocernos
               </span>
-              <h2 className="mt-5 font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-balance md:text-5xl">
+              <h2 className="mt-4 text-balance font-display text-section font-extrabold">
                 Un jardín para crecer felices
               </h2>
-              <p className="mt-4 max-w-xl text-base font-medium leading-relaxed text-on-primary/90 md:text-lg">
+              <p className="mt-3 max-w-xl text-base font-medium leading-relaxed text-on-primary/90 md:mt-4 md:text-lg">
                 Agenda una visita, conoce nuestras aulas y déjanos responder todas tus
                 preguntas. Te esperamos con los brazos abiertos.
               </p>
@@ -38,12 +38,12 @@ export default function FinalCta() {
                 href="/admisiones"
                 className="btn btn-glass w-full"
               >
-                Iniciar inscripción
+                Solicitar cupo
                 <ArrowRight className="size-5" aria-hidden="true" />
               </Link>
               <a
                 href="tel:+582861234567"
-                className="mt-1 flex items-center justify-center gap-2 text-sm font-bold text-on-primary/90 transition-colors hover:text-on-primary"
+                className="mt-1 flex min-h-11 items-center justify-center gap-2 text-sm font-bold text-on-primary/90 transition-colors hover:text-on-primary"
               >
                 <Phone className="size-4" aria-hidden="true" />
                 +58 (0286) 123-4567

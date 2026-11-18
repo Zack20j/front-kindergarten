@@ -47,7 +47,7 @@ export default function LibrosDidacticosPage() {
         tone="primary"
       />
 
-      <section className="mx-auto w-full max-w-6xl px-6 py-14 md:py-16">
+      <section className="mx-auto w-full max-w-6xl px-5 py-10 sm:px-6 md:py-16">
         <Reveal>
           <SectionHeading
             eyebrow="Descargables"
@@ -60,7 +60,7 @@ export default function LibrosDidacticosPage() {
           />
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {LIBROS.map((libro, index) => (
             <Reveal key={libro.title} delay={index * 90}>
               <ResourceCard {...libro} />
@@ -69,11 +69,11 @@ export default function LibrosDidacticosPage() {
         </div>
 
         <Reveal delay={120}>
-          <div className="mt-10 flex flex-col items-start justify-between gap-4 rounded-[1.75rem] border border-outline-variant/40 bg-surface-container-low p-5 sm:flex-row sm:items-center">
+          <div className="mt-8 flex flex-col items-start justify-between gap-4 rounded-[1.5rem] border border-outline-variant/40 bg-surface-container-low p-5 sm:flex-row sm:items-center sm:rounded-[1.75rem]">
             <p className="text-sm font-semibold text-on-surface-variant">
               ¿No encuentras lo que buscas? Podemos ayudarte.
             </p>
-            <Link href="/contacto" className="btn btn-ghost btn-sm shrink-0">
+            <Link href="/contacto" className="btn btn-ghost btn-sm w-full shrink-0 sm:w-auto">
               Contactar al colegio
               <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
@@ -83,3 +83,4 @@ export default function LibrosDidacticosPage() {
     </main>
   );
 }
+

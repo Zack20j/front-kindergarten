@@ -8,7 +8,7 @@ interface ChannelToggleProps {
 
 export default function ChannelToggle({ channel, checked, onChange }: ChannelToggleProps) {
   return (
-    <label className="cursor-pointer relative flex items-center">
+    <label className="relative flex cursor-pointer items-center">
       <input
         checked={checked}
         onChange={(e) => onChange(channel.id, e.target.checked)}
@@ -16,11 +16,17 @@ export default function ChannelToggle({ channel, checked, onChange }: ChannelTog
         type="checkbox"
       />
       <div
-        className="flex items-center gap-3 px-5 py-3 rounded-full border-2 transition-all duration-300"
+        className="flex items-center gap-3 rounded-full border-2 px-5 py-3 transition-colors duration-200 peer-focus-visible:outline-[3px] peer-focus-visible:outline-offset-[3px] peer-focus-visible:outline-primary/70"
         style={{
-          backgroundColor: checked ? `${channel.color}1a` : "#eeeeea",
-          borderColor: checked ? channel.color : "transparent",
-          color: checked ? channel.color : "#5d605c",
+          backgroundColor: checked
+            ? `color-mix(in oklab, ${channel.color} 16%, transparent)`
+            : "var(--surface-container)",
+          borderColor: checked
+            ? `color-mix(in oklab, ${channel.color} 70%, var(--on-surface))`
+            : "var(--outline-variant)",
+          color: checked
+            ? `color-mix(in oklab, ${channel.color} 70%, var(--on-surface))`
+            : "var(--on-surface-variant)",
         }}
       >
         <span
@@ -29,7 +35,7 @@ export default function ChannelToggle({ channel, checked, onChange }: ChannelTog
         >
           {channel.icon}
         </span>
-        <span className="font-['Plus_Jakarta_Sans'] font-medium text-[0.875rem]">{channel.label}</span>
+        <span className="text-[0.875rem] font-semibold">{channel.label}</span>
       </div>
     </label>
   );

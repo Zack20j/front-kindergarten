@@ -1,3 +1,5 @@
+import { Image as ImageIcon } from 'lucide-react';
+
 interface EfemerideCardProps {
     image: string;
     day: string;
@@ -8,31 +10,34 @@ interface EfemerideCardProps {
 
 export default function EfemerideCard({ image, day, month, title, description }: EfemerideCardProps) {
     return (
-        <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_15px_rgba(48,51,48,0.05)] hover:-translate-y-1 transition-transform duration-300">
-            <div className="relative w-full h-48 bg-surface-container">
+        <article className="card-clay group flex h-full flex-col overflow-hidden">
+            <div className="relative h-48 w-full overflow-hidden bg-surface-container">
                 {image ? (
                     <img
                         src={image}
                         alt={title}
-                        className="absolute inset-0 h-full w-full object-cover"
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"
+                        decoding="async"
                     />
                 ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-primary">
-                        <span className="material-symbols-outlined text-4xl">image</span>
+                    <div className="absolute inset-0 flex items-center justify-center bg-primary-container/30 text-primary">
+                        <ImageIcon className="size-10" aria-hidden="true" />
                     </div>
                 )}
 
-                {/* Badge de fecha superpuesto */}
-                <div className="absolute top-3 left-3 flex flex-col items-center justify-center bg-surface-container-lowest text-primary rounded-lg w-14 h-14 shadow-[0_4px_15px_rgba(48,51,48,0.15)]">
-                    <span className="text-xl font-extrabold leading-none">{day}</span>
-                    <span className="text-[10px] font-bold uppercase tracking-wide">{month}</span>
+                <div className="absolute left-3 top-3 flex size-14 flex-col items-center justify-center rounded-2xl border border-outline-variant/30 bg-surface-container-lowest/95 text-primary shadow-[0_10px_24px_-14px_rgba(31,48,56,0.55)] backdrop-blur">
+                    <span className="font-display text-xl font-extrabold leading-none">{day}</span>
+                    <span className="text-[0.6rem] font-extrabold uppercase tracking-[0.14em]">{month}</span>
                 </div>
             </div>
-            <div className="p-5 flex flex-col gap-2">
-                <h4 className="font-extrabold text-lg text-on-surface leading-snug">{title}</h4>
-                <p className="text-on-surface-variant text-sm leading-relaxed">{description}</p>
+
+            <div className="flex flex-1 flex-col gap-2 p-5">
+                <h3 className="font-display text-lg font-extrabold leading-snug text-on-surface">{title}</h3>
+                <p className="text-sm font-medium leading-relaxed text-on-surface-variant line-clamp-3">
+                    {description}
+                </p>
             </div>
-        </div>
+        </article>
     );
 }

@@ -18,9 +18,9 @@ export default function MediaUploader({ media, uploading = false, onFilesSelecte
   };
 
   return (
-    <section className="bg-white rounded-[1rem] p-8 shadow-[0_20px_40px_-10px_rgba(48,51,48,0.06)]">
-      <h2 className="font-['Plus_Jakarta_Sans'] text-[1.25rem] font-semibold text-[#303330] mb-6 flex items-center gap-2">
-        <span className="material-symbols-outlined text-[#3c6942]" style={{ fontVariationSettings: "'FILL' 1" }}>
+    <section className="rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-6 md:p-8 dark:bg-surface-container-low">
+      <h2 className="mb-6 flex items-center gap-2 text-[1.25rem] font-bold text-on-surface">
+        <span className="material-symbols-outlined text-secondary" style={{ fontVariationSettings: "'FILL' 1" }}>
           perm_media
         </span>
         Multimedia
@@ -30,7 +30,7 @@ export default function MediaUploader({ media, uploading = false, onFilesSelecte
         onDragOver={(e) => e.preventDefault()}
         onDrop={handleDrop}
         onClick={() => !uploading && inputRef.current?.click()}
-        className="border-2 border-dashed border-[rgba(177,178,175,0.5)] rounded-[1rem] p-10 flex flex-col items-center justify-center text-center hover:bg-[rgba(244,244,240,0.5)] hover:border-[rgba(0,103,137,0.5)] transition-colors cursor-pointer group"
+        className="group flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-outline-variant p-8 text-center transition-colors hover:border-primary/60 hover:bg-primary/5 md:p-10"
       >
         <input
           ref={inputRef}
@@ -46,15 +46,15 @@ export default function MediaUploader({ media, uploading = false, onFilesSelecte
             }
           }}
         />
-        <div className="w-16 h-16 bg-[#cbfecc] text-[#38643e] rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+        <div className="mb-4 flex size-16 items-center justify-center rounded-full bg-secondary-container text-on-secondary-container transition-transform group-hover:scale-105">
           <span className="material-symbols-outlined text-3xl">
             {uploading ? "progress_activity" : "cloud_upload"}
           </span>
         </div>
-        <h3 className="font-['Plus_Jakarta_Sans'] text-[1.0625rem] font-medium text-[#303330] mb-1">
+        <h3 className="mb-1 text-[1.0625rem] font-semibold text-on-surface">
           {uploading ? "Subiendo archivos…" : "Arrastra y suelta tus archivos aquí"}
         </h3>
-        <p className="font-['Plus_Jakarta_Sans'] text-[0.875rem] text-[#5d605c] mb-6">
+        <p className="mb-6 text-[0.875rem] text-on-surface-variant">
           Soporta JPG, PNG, WebP y MP4 (máx. 50 MB)
         </p>
         <button
@@ -64,13 +64,13 @@ export default function MediaUploader({ media, uploading = false, onFilesSelecte
             e.stopPropagation();
             inputRef.current?.click();
           }}
-          className="px-6 py-2 rounded-full bg-[#e8e8e4] text-[#303330] font-medium text-[0.875rem] hover:bg-[#e1e3df] transition-colors disabled:opacity-60"
+          className="rounded-full bg-surface-container-high px-6 py-2 text-[0.875rem] font-semibold text-on-surface transition-colors hover:bg-surface-container-highest disabled:opacity-60"
         >
-          Explorar Archivos
+          Explorar archivos
         </button>
       </div>
 
-      <div className="mt-6 flex gap-4 overflow-x-auto pb-2 snap-x">
+      <div className="mt-6 flex snap-x gap-4 overflow-x-auto pb-2">
         {media.map((item) => (
           <MediaThumbnail key={item.id} item={item} onRemove={onRemove} />
         ))}
@@ -78,9 +78,9 @@ export default function MediaUploader({ media, uploading = false, onFilesSelecte
           type="button"
           onClick={() => inputRef.current?.click()}
           aria-label="Añadir más multimedia"
-          className="relative w-24 h-24 rounded-[1rem] overflow-hidden flex-shrink-0 snap-start border border-[#e1e3df] bg-[#eeeeea] flex items-center justify-center"
+          className="relative flex size-24 shrink-0 snap-start items-center justify-center overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-low text-on-surface-variant transition-colors hover:border-primary/50 hover:text-primary"
         >
-          <span className="material-symbols-outlined text-[#5d605c] text-3xl">add_photo_alternate</span>
+          <span className="material-symbols-outlined text-3xl">add_photo_alternate</span>
         </button>
       </div>
     </section>

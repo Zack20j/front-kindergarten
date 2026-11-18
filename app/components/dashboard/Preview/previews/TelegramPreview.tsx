@@ -2,7 +2,7 @@ import type { ChannelPreviewProps } from "./types";
 
 export default function TelegramPreview({ schoolName, content, media, timestamp }: ChannelPreviewProps) {
   return (
-    <div className="bg-[#e4ebf0] rounded-[1rem] p-4 h-[400px] overflow-y-auto relative">
+    <div className="relative h-[400px] overflow-y-auto rounded-2xl bg-surface-container p-4">
       <div className="flex justify-center mb-4">
         <span className="bg-[rgba(120,144,156,0.2)] text-[#546e7a] text-xs px-2 py-1 rounded-full font-medium">
           Hoy

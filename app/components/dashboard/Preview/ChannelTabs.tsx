@@ -8,7 +8,7 @@ interface ChannelTabsProps {
 
 export default function ChannelTabs({ channels, active, onChange }: ChannelTabsProps) {
   return (
-    <div className="flex gap-2 p-1 bg-[#f4f4f0] rounded-full mb-6">
+    <div className="mb-6 flex gap-2 rounded-full bg-surface-container-high p-1">
       {channels.map((channel) => {
         const isActive = channel.id === active;
         return (
@@ -17,8 +17,10 @@ export default function ChannelTabs({ channels, active, onChange }: ChannelTabsP
             type="button"
             onClick={() => onChange(channel.id)}
             className={[
-              "flex-1 py-2 px-4 rounded-full text-[0.875rem] font-medium flex items-center justify-center gap-2 transition-colors",
-              isActive ? "bg-white shadow-sm text-[#303330]" : "text-[#5d605c] hover:bg-[#e8e8e4]",
+              "flex flex-1 items-center justify-center gap-2 rounded-full px-4 py-2 text-[0.875rem] font-semibold transition-colors",
+              isActive
+                ? "bg-surface-container-lowest text-on-surface shadow-sm dark:bg-surface-container"
+                : "text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface",
             ].join(" ")}
           >
             <span

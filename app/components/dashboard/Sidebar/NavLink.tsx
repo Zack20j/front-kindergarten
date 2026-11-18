@@ -45,21 +45,21 @@ export default function NavLink({
           aria-label={item.label}
           title={collapsed ? item.label : undefined}
           className={[
-            "flex min-w-0 flex-1 items-center gap-3 py-3 rounded-full transition-all duration-200 active:scale-95",
+            "flex min-w-0 flex-1 items-center gap-3 py-3 rounded-full transition-colors duration-200",
             collapsed ? "justify-center px-3" : "px-4",
             active
-              ? "bg-[#62ccff] text-[#006789] shadow-[inset_0_2px_4px_rgba(255,255,255,0.2)]"
-              : "text-[#5d605c] hover:bg-[#e8e8e4]",
+              ? "bg-primary-container text-on-primary-container font-bold"
+              : "text-on-surface-variant font-medium hover:bg-surface-container-high hover:text-on-surface",
           ].join(" ")}
         >
           <span
-            className="material-symbols-outlined"
+            className="material-symbols-outlined shrink-0"
             style={{ fontVariationSettings: item.iconFilled ? "'FILL' 1" : "'FILL' 0" }}
           >
             {item.icon}
           </span>
           {!collapsed && (
-            <span className="font-['Plus_Jakarta_Sans'] text-[0.875rem] font-medium tracking-tight whitespace-nowrap">
+            <span className="text-[0.875rem] tracking-tight whitespace-nowrap">
               {item.label}
             </span>
           )}
@@ -72,7 +72,7 @@ export default function NavLink({
             aria-label={`${expanded ? "Contraer" : "Expandir"} ${item.label}`}
             aria-expanded={expanded}
             aria-controls={`${item.id}-submenu`}
-            className="ml-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[#5d605c] transition-colors hover:bg-[#e8e8e4] hover:text-[#006789]"
+            className="ml-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-primary"
           >
             <span className="material-symbols-outlined text-[20px]">
               {expanded ? "expand_less" : "expand_more"}
@@ -82,7 +82,7 @@ export default function NavLink({
       </div>
 
       {hasChildren && !collapsed && expanded && (
-        <div id={`${item.id}-submenu`} className="ml-8 mt-1 space-y-1 border-l border-[#d9dedb] pl-3">
+        <div id={`${item.id}-submenu`} className="ml-8 mt-1 space-y-1 border-l border-outline-variant pl-3">
           {item.children?.map((child) => {
             const childActive = child.id === activeChildId;
 
@@ -90,12 +90,13 @@ export default function NavLink({
               <Link
                 key={child.id}
                 href={child.href}
+                onClick={onNavigate}
                 aria-current={childActive ? "page" : undefined}
                 className={[
-                  "block rounded-full px-4 py-2.5 font-['Plus_Jakarta_Sans'] text-[0.8125rem] font-medium transition-colors",
+                  "block rounded-full px-4 py-2.5 text-[0.8125rem] transition-colors",
                   childActive
-                    ? "bg-[rgba(98,204,255,0.22)] font-bold text-[#006789]"
-                    : "text-[#5d605c] hover:bg-[#e8e8e4] hover:text-[#006789]",
+                    ? "bg-primary-container/60 font-bold text-on-primary-container"
+                    : "font-medium text-on-surface-variant hover:bg-surface-container-high hover:text-primary",
                 ].join(" ")}
               >
                 {child.label}

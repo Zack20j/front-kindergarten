@@ -9,15 +9,18 @@ interface ChannelSelectorProps {
 
 export default function ChannelSelector({ channels, selected, onToggle }: ChannelSelectorProps) {
   return (
-    <section className="bg-white rounded-[1rem] p-8 shadow-[0_20px_40px_-10px_rgba(48,51,48,0.06)] relative overflow-hidden group">
-      <div className="absolute top-0 right-0 w-32 h-32 bg-[rgba(98,204,255,0.1)] rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-110 duration-500 ease-out" />
-      <h2 className="font-['Plus_Jakarta_Sans'] text-[1.25rem] font-semibold text-[#303330] mb-6 flex items-center gap-2">
-        <span className="material-symbols-outlined text-[#006789]" style={{ fontVariationSettings: "'FILL' 1" }}>
+    <section className="relative overflow-hidden rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-6 md:p-8 dark:bg-surface-container-low">
+      <div className="pointer-events-none absolute -mr-16 -mt-16 top-0 right-0 size-32 rounded-bl-full bg-primary/10" />
+      <h2 className="mb-6 flex items-center gap-2 text-[1.25rem] font-bold text-on-surface">
+        <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>
           cell_tower
         </span>
-        Destinos
+        Publicación web y Telegram
       </h2>
-      <div className="flex flex-wrap gap-4">
+      <p className="mb-5 text-sm leading-relaxed text-on-surface-variant">
+        Al publicar, el contenido aparece en la cartelera web. También puedes enviarlo por Telegram.
+      </p>
+      <div className="flex flex-wrap gap-3">
         {channels.map((channel) => (
           <ChannelToggle
             key={channel.id}

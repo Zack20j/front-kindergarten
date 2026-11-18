@@ -19,8 +19,8 @@ function StatusBadge({ status }: { status: PostStatus }) {
       className={[
         "text-[11px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full",
         published
-          ? "bg-[#cbfecc] text-[#38643e]"
-          : "bg-[#eeeeea] text-[#5d605c]",
+          ? "bg-secondary-container text-on-secondary-container"
+          : "bg-surface-container text-on-surface-variant",
       ].join(" ")}
     >
       {published ? "Publicado" : "Borrador"}
@@ -124,27 +124,27 @@ export default function ScheduleManager() {
     <div className="max-w-6xl mx-auto px-6 md:px-12 py-8">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div className="max-w-2xl">
-          <p className="mb-3 font-['Plus_Jakarta_Sans'] text-sm font-bold uppercase tracking-[0.14em] text-[#006789]">
+          <p className="mb-3 text-sm font-bold uppercase tracking-[0.14em] text-primary">
             Cartelera
           </p>
-          <h1 className="mb-3 font-['Plus_Jakarta_Sans'] text-[2rem] font-extrabold tracking-tight text-[#303330]">
+          <h1 className="mb-3 font-display text-[2rem] font-extrabold tracking-tight text-balance text-on-surface">
             Publicaciones
           </h1>
-          <p className="font-['Plus_Jakarta_Sans'] text-[1.0625rem] leading-relaxed text-[#5d605c]">
+          <p className="text-[1.0625rem] leading-relaxed text-on-surface-variant">
             Administra lo que se muestra en la cartelera del colegio.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
           <Link
             href="/dashboard/schedule/nueva-publicacion"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#006789] to-[#62ccff] px-5 py-2.5 font-['Plus_Jakarta_Sans'] text-sm font-bold text-[#f4faff] shadow-[inset_0_2px_4px_rgba(255,255,255,0.2)] transition-opacity hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-on-primary transition-colors hover:bg-primary-dim"
           >
             <span className="material-symbols-outlined text-xl">add</span>
             Nueva publicación
           </Link>
           <Link
             href="/dashboard/schedule/nuevo-evento"
-            className="inline-flex items-center gap-2 rounded-full border border-[#c9dce2] px-5 py-2.5 font-['Plus_Jakarta_Sans'] text-sm font-bold text-[#006789] transition-colors hover:bg-[#eaf8fd]"
+            className="inline-flex items-center gap-2 rounded-full border border-primary/30 px-5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-primary-container/40"
           >
             <span className="material-symbols-outlined text-xl">event</span>
             Nuevo evento
@@ -153,19 +153,21 @@ export default function ScheduleManager() {
       </div>
 
       {errorMessage && (
-        <div className="mb-6 flex items-start gap-3 rounded-[1rem] border border-[#e9b8b8] bg-[#fbeaea] px-5 py-4 text-[#ac3434]">
-          <span className="material-symbols-outlined text-[20px]">error</span>
+        <div className="mb-6 flex items-start gap-3 rounded-2xl border border-error/30 bg-error-container/40 px-5 py-4 text-on-error-container">
+          <span className="material-symbols-outlined text-[20px] text-error">error</span>
           <p className="text-sm font-semibold">{errorMessage}</p>
         </div>
       )}
 
-      <div className="mb-6 flex gap-2 rounded-full bg-[#eeeeea] p-1.5 w-max">
+      <div className="mb-6 flex w-max gap-2 rounded-full bg-surface-container-low p-1.5">
         <button
           type="button"
           onClick={() => setTab("posts")}
           className={[
-            "px-5 py-2 rounded-full text-sm font-bold transition-colors",
-            tab === "posts" ? "bg-white text-[#006789] shadow-sm" : "text-[#5d605c] hover:text-[#303330]",
+            "rounded-full px-5 py-2 text-sm font-bold transition-colors",
+            tab === "posts"
+              ? "bg-surface-container-lowest text-primary shadow-sm dark:bg-surface-container-high"
+              : "text-on-surface-variant hover:text-on-surface",
           ].join(" ")}
         >
           Publicaciones ({posts.length})
@@ -174,8 +176,10 @@ export default function ScheduleManager() {
           type="button"
           onClick={() => setTab("events")}
           className={[
-            "px-5 py-2 rounded-full text-sm font-bold transition-colors",
-            tab === "events" ? "bg-white text-[#006789] shadow-sm" : "text-[#5d605c] hover:text-[#303330]",
+            "rounded-full px-5 py-2 text-sm font-bold transition-colors",
+            tab === "events"
+              ? "bg-surface-container-lowest text-primary shadow-sm dark:bg-surface-container-high"
+              : "text-on-surface-variant hover:text-on-surface",
           ].join(" ")}
         >
           Eventos ({events.length})
@@ -183,8 +187,8 @@ export default function ScheduleManager() {
       </div>
 
       {isLoading ? (
-        <div className="flex items-center justify-center gap-3 rounded-[1.5rem] border border-[#e5e7e2] bg-white px-6 py-14 text-[#5d605c]">
-          <span className="material-symbols-outlined text-[24px] text-[#006789] animate-spin">
+        <div className="flex items-center justify-center gap-3 rounded-2xl border border-outline-variant/50 bg-surface-container-lowest dark:bg-surface-container-low px-6 py-14 text-on-surface-variant">
+          <span className="material-symbols-outlined animate-spin text-[24px] text-primary">
             progress_activity
           </span>
           <p className="text-sm font-semibold">Cargando…</p>
@@ -207,30 +211,30 @@ export default function ScheduleManager() {
               return (
                 <article
                   key={post.id}
-                  className="flex flex-col gap-4 rounded-[1.25rem] border border-[#e5e7e2] bg-white p-4 shadow-[0_10px_30px_-18px_rgba(48,51,48,0.35)] sm:flex-row sm:items-center"
+                  className="flex flex-col gap-4 rounded-2xl border border-outline-variant/50 bg-surface-container-lowest dark:bg-surface-container-low p-4 sm:flex-row sm:items-center"
                 >
                   {coverIsVideo ? (
-                    <div className="flex h-24 w-full items-center justify-center rounded-[0.75rem] bg-[#f4f4f0] text-[#006789] sm:w-28">
+                    <div className="flex h-24 w-full items-center justify-center rounded-xl bg-surface-container-low text-primary sm:w-28">
                       <span className="material-symbols-outlined text-3xl">videocam</span>
                     </div>
                   ) : (
                     <img
                       src={post.imageUrl}
                       alt={`Portada de ${post.title}`}
-                      className="h-24 w-full rounded-[0.75rem] object-cover sm:w-28"
+                      className="h-24 w-full rounded-xl object-cover sm:w-28"
                     />
                   )}
                   <div className="min-w-0 flex-1">
                     <div className="mb-1 flex flex-wrap items-center gap-2">
                       <StatusBadge status={post.status} />
-                      <span className="text-xs font-medium text-[#5d605c]">
+                      <span className="text-xs font-medium text-on-surface-variant">
                         {formatDateTimeEs(post.publishedAt ?? post.createdAt)}
                       </span>
                     </div>
-                    <h2 className="truncate font-['Plus_Jakarta_Sans'] text-base font-bold text-[#303330]">
+                    <h2 className="truncate text-base font-bold text-on-surface">
                       {post.title}
                     </h2>
-                    <p className="line-clamp-2 text-sm leading-relaxed text-[#5d605c]">
+                    <p className="line-clamp-2 text-sm leading-relaxed text-on-surface-variant">
                       {post.caption}
                     </p>
                   </div>
@@ -239,7 +243,7 @@ export default function ScheduleManager() {
                       type="button"
                       disabled={busy}
                       onClick={() => void togglePost(post)}
-                      className="rounded-full border border-[#c9dce2] px-4 py-2 text-xs font-bold text-[#006789] transition-colors hover:bg-[#eaf8fd] disabled:opacity-50"
+                      className="rounded-full border border-primary/30 px-4 py-2 text-xs font-bold text-primary transition-colors hover:bg-primary-container/40 disabled:opacity-50"
                     >
                       {post.status === "PUBLISHED" ? "Despublicar" : "Publicar"}
                     </button>
@@ -247,7 +251,7 @@ export default function ScheduleManager() {
                       type="button"
                       disabled={busy}
                       onClick={() => void removePost(post)}
-                      className="rounded-full border border-[#e9b8b8] px-4 py-2 text-xs font-bold text-[#ac3434] transition-colors hover:bg-[#fbeaea] disabled:opacity-50"
+                      className="rounded-full border border-error/30 px-4 py-2 text-xs font-bold text-error transition-colors hover:bg-error-container/40 disabled:opacity-50"
                     >
                       Eliminar
                     </button>
@@ -273,16 +277,16 @@ export default function ScheduleManager() {
             return (
               <article
                 key={event.id}
-                className="flex flex-col gap-4 rounded-[1.25rem] border border-[#e5e7e2] bg-white p-4 shadow-[0_10px_30px_-18px_rgba(48,51,48,0.35)] sm:flex-row sm:items-center"
+                className="flex flex-col gap-4 rounded-2xl border border-outline-variant/50 bg-surface-container-lowest dark:bg-surface-container-low p-4 sm:flex-row sm:items-center"
               >
                 {event.imageUrl ? (
                   <img
                     src={event.imageUrl}
                     alt={`Imagen de ${event.title}`}
-                    className="h-24 w-full rounded-[0.75rem] object-cover sm:w-28"
+                    className="h-24 w-full rounded-xl object-cover sm:w-28"
                   />
                 ) : (
-                  <div className="flex h-24 w-full items-center justify-center rounded-[0.75rem] bg-[#f4f4f0] text-[#006789] sm:w-28">
+                  <div className="flex h-24 w-full items-center justify-center rounded-xl bg-surface-container-low text-primary sm:w-28">
                     <span className="material-symbols-outlined text-3xl">event</span>
                   </div>
                 )}
@@ -292,14 +296,14 @@ export default function ScheduleManager() {
                     <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${meta.badgeClass}`}>
                       {meta.label}
                     </span>
-                    <span className="text-xs font-medium text-[#5d605c]">
+                    <span className="text-xs font-medium text-on-surface-variant">
                       {formatDateTimeEs(event.startsAt)}
                     </span>
                   </div>
-                  <h2 className="truncate font-['Plus_Jakarta_Sans'] text-base font-bold text-[#303330]">
+                  <h2 className="truncate text-base font-bold text-on-surface">
                     {event.title}
                   </h2>
-                  <p className="line-clamp-2 text-sm leading-relaxed text-[#5d605c]">
+                  <p className="line-clamp-2 text-sm leading-relaxed text-on-surface-variant">
                     {event.description ?? event.location ?? "Sin descripción"}
                   </p>
                 </div>
@@ -308,7 +312,7 @@ export default function ScheduleManager() {
                     type="button"
                     disabled={busy}
                     onClick={() => void toggleEvent(event)}
-                    className="rounded-full border border-[#c9dce2] px-4 py-2 text-xs font-bold text-[#006789] transition-colors hover:bg-[#eaf8fd] disabled:opacity-50"
+                    className="rounded-full border border-primary/30 px-4 py-2 text-xs font-bold text-primary transition-colors hover:bg-primary-container/40 disabled:opacity-50"
                   >
                     {event.status === "PUBLISHED" ? "Despublicar" : "Publicar"}
                   </button>
@@ -316,7 +320,7 @@ export default function ScheduleManager() {
                     type="button"
                     disabled={busy}
                     onClick={() => void removeEvent(event)}
-                    className="rounded-full border border-[#e9b8b8] px-4 py-2 text-xs font-bold text-[#ac3434] transition-colors hover:bg-[#fbeaea] disabled:opacity-50"
+                    className="rounded-full border border-error/30 px-4 py-2 text-xs font-bold text-error transition-colors hover:bg-error-container/40 disabled:opacity-50"
                   >
                     Eliminar
                   </button>
@@ -344,19 +348,19 @@ function EmptyState({
   action: string;
 }) {
   return (
-    <section className="rounded-[1.5rem] border border-[#e5e7e2] bg-white px-6 py-14 text-center shadow-[0_20px_40px_-10px_rgba(48,51,48,0.06)] md:px-12">
-      <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#eaf8fd] text-[#006789]">
+    <section className="rounded-2xl border border-outline-variant/50 bg-surface-container-lowest dark:bg-surface-container-low px-6 py-14 text-center md:px-12">
+      <div className="mx-auto mb-5 flex size-16 items-center justify-center rounded-full bg-primary-container text-on-primary-container">
         <span className="material-symbols-outlined text-3xl" aria-hidden="true">
           {icon}
         </span>
       </div>
-      <h2 className="mb-2 font-['Plus_Jakarta_Sans'] text-xl font-bold text-[#303330]">{title}</h2>
-      <p className="mx-auto mb-7 max-w-md font-['Plus_Jakarta_Sans'] text-sm leading-relaxed text-[#5d605c]">
+      <h2 className="mb-2 font-display text-xl font-extrabold text-on-surface">{title}</h2>
+      <p className="mx-auto mb-7 max-w-md text-sm leading-relaxed text-on-surface-variant">
         {description}
       </p>
       <Link
         href={href}
-        className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#006789] to-[#62ccff] px-6 py-3 font-['Plus_Jakarta_Sans'] text-sm font-bold text-[#f4faff] shadow-[inset_0_2px_4px_rgba(255,255,255,0.2)] transition-opacity hover:opacity-90"
+        className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-bold text-on-primary transition-colors hover:bg-primary-dim"
       >
         <span className="material-symbols-outlined text-xl" aria-hidden="true">
           add

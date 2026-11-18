@@ -63,9 +63,9 @@ export default function Gallery() {
   };
 
   return (
-    <section className="overflow-hidden py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+    <section className="overflow-hidden py-12 md:py-20">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6">
+        <div className="mb-6 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <SectionHeading
             eyebrow="Momentos"
             title={
@@ -78,7 +78,7 @@ export default function Gallery() {
             align="left"
           />
 
-          <div className="flex items-center gap-2">
+          <div className="hidden items-center gap-2 sm:flex">
             <Link
               href="/galeria"
               className="btn btn-ghost btn-sm mr-1 hidden sm:inline-flex"
@@ -105,20 +105,28 @@ export default function Gallery() {
           </div>
         </div>
 
+        <p className="mb-3 flex items-center gap-2 text-[0.66rem] font-extrabold uppercase tracking-[0.14em] text-on-surface-variant sm:hidden">
+          Desliza para ver más
+          <ArrowRight className="size-3.5" aria-hidden="true" />
+        </p>
+
         <div
           ref={scrollContainerRef}
-          className="hide-scrollbar -mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-4 md:-mx-8 md:px-8"
+          role="region"
+          aria-label="Momentos del jardín"
+          tabIndex={0}
+          className="hide-scrollbar -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 sm:-mx-6 sm:gap-5 sm:px-6"
         >
           {GALLERY_IMAGES.map((image, index) => (
             <figure
               key={image.src}
-              className="group relative h-[270px] w-[76vw] max-w-[340px] shrink-0 snap-start overflow-hidden rounded-[1.75rem] border-[5px] border-surface-container-lowest bg-surface-container-high shadow-[0_22px_44px_-30px_rgba(31,48,56,0.45)] sm:h-[300px] sm:w-[320px]"
+              className="group relative h-[260px] w-[82vw] max-w-[340px] shrink-0 snap-start overflow-hidden rounded-[1.5rem] border-[5px] border-surface-container-lowest bg-surface-container-high shadow-[0_22px_44px_-30px_rgba(31,48,56,0.45)] sm:h-[300px] sm:w-[320px] sm:rounded-[1.75rem]"
             >
               <Image
                 src={image.src}
                 alt={image.alt}
                 fill
-                sizes="(max-width: 640px) 76vw, 320px"
+                sizes="(max-width: 640px) 82vw, 320px"
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#03212c]/75 via-transparent to-transparent opacity-80 transition-opacity group-hover:opacity-100" />
@@ -127,18 +135,14 @@ export default function Gallery() {
                 {String(index + 1).padStart(2, '0')}
               </span>
 
-              <figcaption className="absolute inset-x-4 bottom-4 translate-y-1 font-display text-lg font-extrabold text-white transition-transform duration-300 group-hover:translate-y-0">
+              <figcaption className="absolute inset-x-4 bottom-4 font-display text-lg font-extrabold text-white">
                 {image.caption}
               </figcaption>
             </figure>
           ))}
         </div>
 
-        <p className="mt-3 text-center text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant sm:hidden">
-          Desliza para ver más
-        </p>
-
-        <Link href="/galeria" className="btn btn-ghost btn-sm mt-6 w-full sm:hidden">
+        <Link href="/galeria" className="btn btn-ghost btn-sm mt-4 w-full sm:hidden">
           Ver galería completa
           <ArrowUpRight className="size-4" aria-hidden="true" />
         </Link>

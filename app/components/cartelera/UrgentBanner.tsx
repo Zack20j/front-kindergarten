@@ -10,7 +10,7 @@ export default function UrgentBanner({ notice }: UrgentBannerProps) {
 
   return (
     <div role="status" className="bg-tertiary-container text-on-tertiary-container">
-      <div className="mx-auto flex max-w-7xl items-center gap-3 px-6 py-3.5">
+      <div className="mx-auto flex max-w-7xl items-center gap-3 px-5 py-3 sm:px-6 sm:py-3.5">
         <span
           className="grid size-9 shrink-0 place-items-center rounded-full bg-on-tertiary-container/10"
           aria-hidden="true"

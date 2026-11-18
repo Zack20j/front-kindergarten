@@ -50,7 +50,7 @@ export default function WhyChooseUs() {
         <Sparkles className="absolute left-[12%] top-24 size-7 rotate-12 text-tertiary/25" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 pb-20 pt-8 md:pb-24 md:pt-10">
+      <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-6 sm:px-6 md:pb-24 md:pt-10">
         <Reveal>
           <SectionHeading
             eyebrow="¿Por qué elegirnos?"
@@ -62,11 +62,11 @@ export default function WhyChooseUs() {
             description="Cada rincón, cada actividad y cada persona está pensada para que aprender se sienta como jugar."
             icon={Sparkles}
             tone="tertiary"
-            className="mb-12 md:mb-16"
+            className="mb-8 md:mb-16"
           />
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
           {FEATURES_DATA.map((feature, index) => (
             <Reveal key={feature.title} delay={index * 90}>
               <FeatureCard {...feature} />

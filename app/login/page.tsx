@@ -22,7 +22,7 @@ export default function AdminLogin() {
   }, [router]);
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background p-5">
+    <div className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden bg-background p-4 sm:p-5">
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,color-mix(in_oklab,var(--primary-container)_55%,transparent),transparent_26rem),radial-gradient(circle_at_88%_82%,color-mix(in_oklab,var(--sun-container)_60%,transparent),transparent_24rem)]"
@@ -42,7 +42,7 @@ export default function AdminLogin() {
           </Link>
         </div>
 
-        <div className="relative overflow-hidden rounded-[2rem] border border-outline-variant/50 bg-surface-container-lowest/95 p-7 shadow-[0_40px_80px_-44px_rgba(31,48,56,0.55)] backdrop-blur-md sm:p-9">
+        <div className="relative overflow-hidden rounded-[1.5rem] border border-outline-variant/50 bg-surface-container-lowest/95 p-6 shadow-[0_40px_80px_-44px_rgba(31,48,56,0.55)] backdrop-blur-md sm:rounded-[2rem] sm:p-9">
           <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-primary via-sun to-tertiary" />
 
           <LoginHeader />

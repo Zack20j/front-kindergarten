@@ -31,15 +31,15 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-16 w-full overflow-hidden rounded-t-[2.5rem] border-t border-outline-variant/40 bg-surface-container-low">
+    <footer className="relative mt-12 w-full overflow-hidden rounded-t-[2.5rem] border-t border-outline-variant/40 bg-surface-container-low md:mt-16">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="blob-shape -left-24 top-10 h-72 w-72 bg-primary-container/50 blur-3xl" />
         <div className="blob-shape -right-20 bottom-0 h-64 w-64 bg-sun-container/60 blur-3xl" />
         <Sparkles className="absolute right-[18%] top-12 size-8 rotate-12 text-tertiary/30" />
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.2fr_1.15fr] lg:px-8">
-        <div className="flex flex-col gap-5">
+      <div className="relative mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:grid-cols-2 sm:gap-10 sm:px-6 md:py-16 lg:grid-cols-[1.4fr_1fr_1.2fr_1.15fr] lg:px-8">
+        <div className="order-1 flex flex-col gap-5 sm:order-none">
           <Logo />
           <p className="max-w-xs text-sm font-medium leading-relaxed text-on-surface-variant">
             Un espacio seguro y alegre donde los primeros pasos de aprendizaje se
@@ -55,7 +55,7 @@ export default function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="grid size-10 place-items-center rounded-full border border-outline-variant/60 bg-surface-container-lowest text-on-surface-variant transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary"
+                  className="grid size-11 place-items-center rounded-full border border-outline-variant/60 bg-surface-container-lowest text-on-surface-variant transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary"
                 >
                   <Icon className="size-4" aria-hidden="true" />
                 </a>
@@ -64,7 +64,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <nav aria-label="Enlaces del sitio" className="flex flex-col gap-3">
+        <nav aria-label="Enlaces del sitio" className="order-3 flex flex-col gap-3 sm:order-none">
           <h4 className="font-display text-sm font-extrabold uppercase tracking-[0.16em] text-primary">
             Explorar
           </h4>
@@ -79,7 +79,7 @@ export default function Footer() {
           ))}
         </nav>
 
-        <div className="flex flex-col gap-3">
+        <div className="order-4 flex flex-col gap-3 sm:order-none">
           <h4 className="font-display text-sm font-extrabold uppercase tracking-[0.16em] text-primary">
             Contacto
           </h4>
@@ -112,7 +112,7 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="flex flex-col gap-4 rounded-[1.75rem] border border-sun/40 bg-sun-container p-6 text-on-sun-container shadow-[0_18px_36px_-24px_rgba(62,42,0,0.45)]">
+        <div className="order-2 flex flex-col gap-4 rounded-[1.75rem] border border-sun/40 bg-sun-container p-5 text-on-sun-container shadow-[0_18px_36px_-24px_rgba(62,42,0,0.45)] sm:order-none sm:p-6">
           <Sparkles className="size-7" aria-hidden="true" />
           <p className="font-display text-2xl font-extrabold leading-tight">
             ¿Conocemos a tu peque?
@@ -127,7 +127,7 @@ export default function Footer() {
       </div>
 
       <div className="relative border-t border-outline-variant/40">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-5 text-center sm:flex-row sm:text-left lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-5 text-center sm:flex-row sm:px-6 sm:text-left lg:px-8">
           <p className="text-xs font-semibold text-on-surface-variant">
             © {year} UEC Luisa Cáceres de Arismendi. Todos los derechos reservados.
           </p>

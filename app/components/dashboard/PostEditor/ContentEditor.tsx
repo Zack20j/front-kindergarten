@@ -48,7 +48,7 @@ export default function ContentEditor({ value, onChange, maxLength }: ContentEdi
   };
 
   return (
-    <section className="bg-white rounded-[1rem] p-2 shadow-[0_20px_40px_-10px_rgba(48,51,48,0.06)]">
+    <section className="rounded-2xl border border-outline-variant/50 bg-surface-container-lowest dark:bg-surface-container-low p-2">
       <div className="p-6 pb-4">
         <label className="sr-only" htmlFor="post-content">
           Mensaje Principal
@@ -61,11 +61,11 @@ export default function ContentEditor({ value, onChange, maxLength }: ContentEdi
           onChange={(e) => onChange(e.target.value)}
           rows={6}
           placeholder="¿Qué quieres compartir con la comunidad escolar hoy?"
-          className="w-full bg-transparent border-none focus:ring-0 resize-none font-['Plus_Jakarta_Sans'] text-[1.0625rem] text-[#303330] placeholder:text-[rgba(93,96,92,0.5)]"
+          className="w-full resize-none border-none bg-transparent text-[1.0625rem] leading-relaxed text-on-surface placeholder:text-on-surface-variant"
         />
       </div>
 
-      <div className="flex items-center justify-between px-4 py-3 bg-[#f4f4f0] rounded-[2.5rem] m-2">
+      <div className="m-2 flex items-center justify-between rounded-full bg-surface-container-high px-4 py-3">
         <div className="flex gap-1">
           <div className="relative">
             <button
@@ -74,7 +74,7 @@ export default function ContentEditor({ value, onChange, maxLength }: ContentEdi
               aria-haspopup="menu"
               aria-expanded={isEmojiPickerOpen}
               onClick={() => setIsEmojiPickerOpen((open) => !open)}
-              className="p-2 rounded-full text-[#5d605c] hover:bg-[#e1e3df] hover:text-[#006789] transition-colors"
+              className="rounded-full p-2 text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-primary"
             >
               <span className="material-symbols-outlined text-xl">mood</span>
             </button>
@@ -87,7 +87,7 @@ export default function ContentEditor({ value, onChange, maxLength }: ContentEdi
             type="button"
             title="Hashtags (#)"
             onClick={() => handleInsert("#")}
-            className="p-2 rounded-full text-[#5d605c] hover:bg-[#e1e3df] hover:text-[#006789] transition-colors"
+            className="rounded-full p-2 text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-primary"
           >
             <span className="material-symbols-outlined text-xl">tag</span>
           </button>
@@ -96,12 +96,12 @@ export default function ContentEditor({ value, onChange, maxLength }: ContentEdi
             type="button"
             title="Menciones"
             onClick={() => handleInsert("@")}
-            className="p-2 rounded-full text-[#5d605c] hover:bg-[#e1e3df] hover:text-[#006789] transition-colors"
+            className="rounded-full p-2 text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-primary"
           >
             <span className="material-symbols-outlined text-xl">alternate_email</span>
           </button>
         </div>
-        <span className="text-[0.875rem] text-[rgba(93,96,92,0.6)] font-medium px-3">
+        <span className="px-3 text-[0.875rem] font-medium text-on-surface-variant">
           {value.length} / {maxLength}
         </span>
       </div>

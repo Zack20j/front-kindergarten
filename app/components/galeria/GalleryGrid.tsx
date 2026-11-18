@@ -60,30 +60,30 @@ export default function GalleryGrid() {
 
   return (
     <>
-      <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
+      <div className="columns-2 gap-2.5 sm:gap-4 lg:columns-3">
         {PHOTOS.map((photo, index) => (
           <button
             key={photo.src}
             type="button"
             onClick={() => setSelected(index)}
             aria-label={`Ampliar imagen: ${photo.caption}`}
-            className="group relative mb-4 block w-full break-inside-avoid overflow-hidden rounded-[1.5rem] border-[5px] border-surface-container-lowest bg-surface-container-high text-left shadow-[0_20px_40px_-30px_rgba(31,48,56,0.45)]"
+            className="group relative mb-2.5 block w-full break-inside-avoid overflow-hidden rounded-[1rem] border-[3px] border-surface-container-lowest bg-surface-container-high text-left shadow-[0_20px_40px_-30px_rgba(31,48,56,0.45)] sm:mb-4 sm:rounded-[1.5rem] sm:border-[5px]"
           >
             <span className={`relative block w-full ${photo.ratio}`}>
               <Image
                 src={photo.src}
                 alt={photo.alt}
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </span>
-            <span className="absolute inset-0 bg-gradient-to-t from-[#03212c]/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            <span className="absolute bottom-4 left-4 translate-y-2 font-display text-base font-extrabold text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+            <span className="absolute inset-0 bg-gradient-to-t from-[#03212c]/75 via-transparent to-transparent opacity-100 transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100" />
+            <span className="absolute bottom-2.5 left-2.5 font-display text-sm font-extrabold text-white transition-all duration-300 sm:bottom-4 sm:left-4 sm:translate-y-2 sm:text-base sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100">
               {photo.caption}
             </span>
-            <span className="absolute right-4 top-4 grid size-9 place-items-center rounded-full bg-white/20 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100">
-              <ZoomIn className="size-4" aria-hidden="true" />
+            <span className="absolute right-2.5 top-2.5 grid size-8 place-items-center rounded-full bg-white/20 text-white backdrop-blur-md transition-opacity duration-300 sm:right-4 sm:top-4 sm:size-9 sm:opacity-0 sm:group-hover:opacity-100">
+              <ZoomIn className="size-3.5 sm:size-4" aria-hidden="true" />
             </span>
           </button>
         ))}
@@ -101,7 +101,7 @@ export default function GalleryGrid() {
             className="relative w-full max-w-4xl"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="relative h-[68vh] w-full overflow-hidden rounded-[1.5rem] border-4 border-white/10 bg-black/30">
+            <div className="relative h-[68svh] w-full overflow-hidden rounded-[1.5rem] border-4 border-white/10 bg-black/30">
               <Image
                 src={currentPhoto.src}
                 alt={currentPhoto.alt}

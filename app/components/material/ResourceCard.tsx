@@ -37,7 +37,7 @@ export default function ResourceCard({
     <a
       href={href}
       download
-      className="card-clay group flex h-full flex-col gap-4 p-6"
+      className="card-clay group flex h-full flex-col gap-4 p-5 sm:p-6"
     >
       <div className="flex items-start justify-between gap-3">
         <span className={`icon-tile size-14 ${palette.tile}`} aria-hidden="true">

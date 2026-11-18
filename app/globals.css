@@ -216,6 +216,21 @@
   --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-baloo), ui-rounded, "Segoe UI", system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-hero: clamp(2.25rem, 10vw, 4.4rem);
+  --text-hero--line-height: 1.02;
+  --text-hero--letter-spacing: -0.025em;
+
+  --text-page: clamp(1.9rem, 8vw, 3.75rem);
+  --text-page--line-height: 1.04;
+  --text-page--letter-spacing: -0.022em;
+
+  --text-section: clamp(1.75rem, 6.5vw, 3rem);
+  --text-section--line-height: 1.06;
+  --text-section--letter-spacing: -0.02em;
+
+  --text-lead: clamp(1rem, 2.5vw, 1.125rem);
+  --text-lead--line-height: 1.65;
 }
 
 html {
@@ -594,7 +609,6 @@ img {
     opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
 }
 
 .reveal-left {
@@ -612,6 +626,13 @@ img {
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+@media (scripting: none) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

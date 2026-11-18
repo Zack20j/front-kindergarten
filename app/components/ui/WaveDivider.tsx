@@ -9,7 +9,7 @@ export default function WaveDivider({ className = '', flip = false }: WaveDivide
       <svg
         viewBox="0 0 1440 90"
         preserveAspectRatio="none"
-        className={`block h-12 w-full md:h-[70px] ${flip ? 'rotate-180' : ''}`}
+        className={`block h-8 w-full md:h-[70px] ${flip ? 'rotate-180' : ''}`}
         fill="none"
       >
         <path

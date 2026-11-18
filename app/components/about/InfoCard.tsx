@@ -26,7 +26,7 @@ export default function InfoCard({
   tone = 'primary',
 }: InfoCardProps) {
   return (
-    <article className="card-clay group flex h-full flex-col p-7 md:p-8">
+    <article className="card-clay group flex h-full flex-col p-5 sm:p-7 md:p-8">
       <span className={`icon-tile size-14 ${TONES[tone].tile}`} aria-hidden="true">
         <Icon className="size-7" strokeWidth={2.1} />
       </span>

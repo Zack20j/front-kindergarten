@@ -1,5 +1,55 @@
 export const APP_TIME_ZONE = "America/Caracas";
 
+const CALENDAR_DATE_FORMATTER = new Intl.DateTimeFormat("en-CA", {
+  timeZone: APP_TIME_ZONE,
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+});
+
+const LONG_DATE_FORMATTER = new Intl.DateTimeFormat("es-VE", {
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+
+const MONTH_FORMATTER = new Intl.DateTimeFormat("es-VE", {
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+const TIME_FORMATTER = new Intl.DateTimeFormat("es-VE", {
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZone: APP_TIME_ZONE,
+});
+
+const CALENDAR_LONG_FORMATTER = new Intl.DateTimeFormat("es-VE", {
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+const DATE_FORMATTER = new Intl.DateTimeFormat("es-VE", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: APP_TIME_ZONE,
+});
+
+const DATE_TIME_FORMATTER = new Intl.DateTimeFormat("es-VE", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZone: APP_TIME_ZONE,
+});
+
 export const MONTHS_ES = [
   "Ene", "Feb", "Mar", "Abr", "May", "Jun",
   "Jul", "Ago", "Sep", "Oct", "Nov", "Dic",
@@ -29,24 +79,13 @@ export function splitIsoDate(isoDate: string): { day: string; month: string } {
 
 export function formatLongDateEs(isoDate: string): string {
   if (!isoDate) return "Selecciona una fecha";
-  const date = new Date(`${isoDate}T00:00:00`);
-  return new Intl.DateTimeFormat("es-VE", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(date);
+  return LONG_DATE_FORMATTER.format(new Date(`${isoDate}T00:00:00`));
 }
 
 /** Fecha de calendario (yyyy-mm-dd) de un evento; los "todo el día" usan la fecha UTC tal cual. */
 export function toCalendarDate(iso: string, allDay: boolean): string {
   if (allDay) return iso.slice(0, 10);
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: APP_TIME_ZONE,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(new Date(iso));
+  return CALENDAR_DATE_FORMATTER.format(new Date(iso));
 }
 
 export function eventCalendarDate(event: { allDay: boolean; startsAt: string }): string {
@@ -54,12 +93,7 @@ export function eventCalendarDate(event: { allDay: boolean; startsAt: string }):
 }
 
 export function todayCalendarDate(): string {
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: APP_TIME_ZONE,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(new Date());
+  return CALENDAR_DATE_FORMATTER.format(new Date());
 }
 
 export function addDaysIso(isoDate: string, days: number): string {
@@ -89,11 +123,7 @@ export function buildMonthGrid(year: number, month: number): CalendarDay[] {
 }
 
 export function monthLabelEs(year: number, month: number): string {
-  const label = new Intl.DateTimeFormat("es-VE", {
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(Date.UTC(year, month, 1)));
+  const label = MONTH_FORMATTER.format(new Date(Date.UTC(year, month, 1)));
   return label.charAt(0).toUpperCase() + label.slice(1);
 }
 
@@ -109,11 +139,7 @@ export function monthQueryRange(year: number, month: number): { from: string; to
 }
 
 export function formatTimeEs(iso: string): string {
-  return new Intl.DateTimeFormat("es-VE", {
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZone: APP_TIME_ZONE,
-  }).format(new Date(iso));
+  return TIME_FORMATTER.format(new Date(iso));
 }
 
 export function formatEventSchedule(event: {
@@ -131,32 +157,14 @@ export function formatEventSchedule(event: {
 }
 
 export function formatCalendarDateLong(isoDate: string): string {
-  const label = new Intl.DateTimeFormat("es-VE", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(`${isoDate}T12:00:00Z`));
+  const label = CALENDAR_LONG_FORMATTER.format(new Date(`${isoDate}T12:00:00Z`));
   return label.charAt(0).toUpperCase() + label.slice(1);
 }
 
 export function formatDateEs(iso: string): string {
-  return new Intl.DateTimeFormat("es-VE", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: APP_TIME_ZONE,
-  }).format(new Date(iso));
+  return DATE_FORMATTER.format(new Date(iso));
 }
 
 export function formatDateTimeEs(iso: string): string {
-  return new Intl.DateTimeFormat("es-VE", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZone: APP_TIME_ZONE,
-  }).format(new Date(iso));
+  return DATE_TIME_FORMATTER.format(new Date(iso));
 }

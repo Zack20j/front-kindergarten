@@ -5,19 +5,19 @@ interface EventHighlightToggleProps {
 
 export default function EventHighlightToggle({ checked, onChange }: EventHighlightToggleProps) {
   return (
-    <div className="flex items-center justify-between gap-4 bg-[#f4f4f0] p-4 rounded-[1rem]">
+    <div className="flex items-center justify-between gap-4 rounded-2xl bg-surface-container-high p-4">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-[#cbfecc] text-[#38643e] flex items-center justify-center shrink-0">
+        <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-secondary-container text-on-secondary-container">
           <span className="material-symbols-outlined text-xl">campaign</span>
         </div>
         <div>
-          <span className="text-sm font-bold text-[#303330] block">Aviso urgente</span>
-          <span className="text-xs text-[#5d605c]">Mostrarlo también arriba de toda la cartelera pública</span>
+          <span className="block text-sm font-bold text-on-surface">Aviso urgente</span>
+          <span className="text-xs text-on-surface-variant">Mostrarlo también arriba de toda la cartelera pública</span>
         </div>
       </div>
-      <label className="relative inline-flex items-center cursor-pointer shrink-0">
-        <input checked={checked} onChange={(e) => onChange(e.target.checked)} className="sr-only peer" type="checkbox" />
-        <div className="w-12 h-6 bg-[#e1e3df] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#006789]" />
+      <label className="relative inline-flex shrink-0 cursor-pointer items-center">
+        <input checked={checked} onChange={(e) => onChange(e.target.checked)} className="peer sr-only" type="checkbox" />
+        <div className="peer h-6 w-12 rounded-full bg-surface-variant after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-transform after:content-[''] peer-checked:bg-primary peer-checked:after:translate-x-full peer-focus-visible:outline-[3px] peer-focus-visible:outline-offset-[3px] peer-focus-visible:outline-primary/70" />
       </label>
     </div>
   );

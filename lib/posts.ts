@@ -1,4 +1,4 @@
-import { apiFetch } from "@/lib/api";
+import { apiFetch, PUBLIC_CONTENT_REVALIDATE_SECONDS } from "@/lib/api";
 import { authFetch } from "@/lib/auth";
 import type {
   ChannelId,
@@ -77,12 +77,12 @@ export function listAdminPosts(page = 0, size = 50): Promise<PageResponse<PostAp
 
 export function listPublishedPosts(page = 0, size = 6): Promise<PageResponse<PostApiResponse>> {
   return apiFetch<PageResponse<PostApiResponse>>(`/public/posts?page=${page}&size=${size}`, {
-    cache: "no-store",
+    revalidate: PUBLIC_CONTENT_REVALIDATE_SECONDS,
   });
 }
 
 export function getPublishedPostBySlug(slug: string): Promise<PostApiResponse> {
   return apiFetch<PostApiResponse>(`/public/posts/${encodeURIComponent(slug)}`, {
-    cache: "no-store",
+    revalidate: PUBLIC_CONTENT_REVALIDATE_SECONDS,
   });
 }

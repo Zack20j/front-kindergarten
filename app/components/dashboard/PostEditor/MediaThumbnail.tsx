@@ -7,13 +7,13 @@ interface MediaThumbnailProps {
 
 export default function MediaThumbnail({ item, onRemove }: MediaThumbnailProps) {
   return (
-    <div className="relative w-24 h-24 rounded-[1rem] overflow-hidden flex-shrink-0 snap-start border border-[#e1e3df]">
-      <img className="w-full h-full object-cover" src={item.url} alt={item.alt} />
+    <div className="relative size-24 shrink-0 snap-start overflow-hidden rounded-2xl border border-outline-variant">
+      <img className="size-full object-cover" src={item.url} alt={item.alt} />
       <button
         type="button"
         onClick={() => onRemove(item.id)}
         aria-label="Quitar imagen"
-        className="absolute top-1 right-1 w-6 h-6 bg-[rgba(255,255,255,0.8)] backdrop-blur-md rounded-full flex items-center justify-center text-[#303330] hover:text-[#ac3434] transition-colors"
+        className="absolute top-1 right-1 flex size-6 items-center justify-center rounded-full bg-surface-container-lowest/90 text-on-surface backdrop-blur-md transition-colors hover:text-error"
       >
         <span className="material-symbols-outlined text-[14px]">close</span>
       </button>

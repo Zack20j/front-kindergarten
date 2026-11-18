@@ -18,25 +18,25 @@ export default function EventPhotoUpload({ image, uploading = false, onSelect, o
 
   return (
     <div>
-      <label className="block text-sm font-bold text-[#303330] mb-2">
-        Fotografía <span className="text-[#ac3434]">*</span>
+      <label className="mb-2 block text-sm font-bold text-on-surface">
+        Fotografía <span className="text-error">*</span>
       </label>
 
       {uploading ? (
-        <div className="w-full h-48 rounded-[1rem] bg-[#f4f4f0] flex flex-col items-center justify-center gap-2 text-[#5d605c]">
-          <span className="material-symbols-outlined text-3xl text-[#006789] animate-spin">
+        <div className="flex h-48 w-full flex-col items-center justify-center gap-2 rounded-2xl bg-surface-container-low text-on-surface-variant">
+          <span className="material-symbols-outlined animate-spin text-3xl text-primary">
             progress_activity
           </span>
           <p className="text-sm font-semibold">Subiendo fotografía…</p>
         </div>
       ) : image ? (
-        <div className="relative w-full h-48 rounded-[1rem] overflow-hidden bg-[#eeeeea]">
-          <img src={image.url} alt={image.alt} className="w-full h-full object-cover" />
+        <div className="relative h-48 w-full overflow-hidden rounded-2xl bg-surface-container">
+          <img src={image.url} alt={image.alt} className="size-full object-cover" />
           <div className="absolute top-2 right-2 flex gap-2">
             <button
               type="button"
               onClick={() => inputRef.current?.click()}
-              className="w-9 h-9 rounded-full bg-[rgba(255,255,255,0.9)] backdrop-blur-md flex items-center justify-center text-[#303330] hover:text-[#006789] transition-colors"
+              className="flex size-9 items-center justify-center rounded-full bg-surface-container-lowest/90 text-on-surface backdrop-blur-md transition-colors hover:text-primary"
               aria-label="Cambiar fotografía"
             >
               <span className="material-symbols-outlined text-lg">photo_camera</span>
@@ -44,7 +44,7 @@ export default function EventPhotoUpload({ image, uploading = false, onSelect, o
             <button
               type="button"
               onClick={onRemove}
-              className="w-9 h-9 rounded-full bg-[rgba(255,255,255,0.9)] backdrop-blur-md flex items-center justify-center text-[#303330] hover:text-[#ac3434] transition-colors"
+              className="flex size-9 items-center justify-center rounded-full bg-surface-container-lowest/90 text-on-surface backdrop-blur-md transition-colors hover:text-error"
               aria-label="Quitar fotografía"
             >
               <span className="material-symbols-outlined text-lg">delete</span>
@@ -56,13 +56,13 @@ export default function EventPhotoUpload({ image, uploading = false, onSelect, o
           onDragOver={(e) => e.preventDefault()}
           onDrop={handleDrop}
           onClick={() => inputRef.current?.click()}
-          className="border-2 border-dashed border-[rgba(0,103,137,0.3)] rounded-[1rem] p-8 flex flex-col items-center justify-center text-center hover:bg-[rgba(244,244,240,0.5)] transition-colors cursor-pointer"
+          className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-primary/30 p-8 text-center transition-colors hover:bg-primary/5"
         >
-          <div className="w-14 h-14 bg-[#cbfecc] text-[#38643e] rounded-full flex items-center justify-center mb-3">
+          <div className="mb-3 flex size-14 items-center justify-center rounded-full bg-secondary-container text-on-secondary-container">
             <span className="material-symbols-outlined text-2xl">cloud_upload</span>
           </div>
-          <p className="text-sm font-medium text-[#303330]">Arrastra una foto o haz clic para elegirla</p>
-          <p className="text-xs text-[#5d605c] mt-1">JPG, PNG o WebP, máx. 50 MB</p>
+          <p className="text-sm font-semibold text-on-surface">Arrastra una foto o haz clic para elegirla</p>
+          <p className="mt-1 text-xs text-on-surface-variant">JPG, PNG o WebP, máx. 50 MB</p>
         </div>
       )}
 

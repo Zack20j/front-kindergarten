@@ -34,14 +34,16 @@ export default function EventTypeToggle({ value, onChange }: EventTypeToggleProp
             type="button"
             onClick={() => onChange(option.kind)}
             className={[
-              "text-left p-5 rounded-[1rem] border-2 transition-all flex items-start gap-4",
-              isActive ? "border-[#006789] bg-[rgba(0,103,137,0.05)]" : "border-transparent bg-[#f4f4f0] hover:bg-[#eeeeea]",
+              "flex items-start gap-4 rounded-2xl border-2 p-5 text-left transition-colors",
+              isActive
+                ? "border-primary bg-primary/5"
+                : "border-transparent bg-surface-container-high hover:bg-surface-container-highest",
             ].join(" ")}
           >
             <div
               className={[
-                "w-12 h-12 rounded-full flex items-center justify-center shrink-0",
-                isActive ? "bg-[#006789] text-white" : "bg-[#e1e3df] text-[#5d605c]",
+                "flex size-12 shrink-0 items-center justify-center rounded-full",
+                isActive ? "bg-primary text-on-primary" : "bg-surface-variant text-on-surface-variant",
               ].join(" ")}
             >
               <span className="material-symbols-outlined text-2xl" style={{ fontVariationSettings: isActive ? "'FILL' 1" : "'FILL' 0" }}>
@@ -49,10 +51,10 @@ export default function EventTypeToggle({ value, onChange }: EventTypeToggleProp
               </span>
             </div>
             <div>
-              <h3 className="font-bold text-[#303330]">{option.title}</h3>
-              <p className="text-sm text-[#5d605c] mt-0.5">{option.description}</p>
+              <h3 className="font-bold text-on-surface">{option.title}</h3>
+              <p className="mt-0.5 text-sm text-on-surface-variant">{option.description}</p>
             </div>
-            <span className="material-symbols-outlined ml-auto text-xl shrink-0" style={{ color: isActive ? "#006789" : "#b1b2af" }}>
+            <span className="material-symbols-outlined ml-auto shrink-0 text-xl" style={{ color: isActive ? "var(--primary)" : "var(--outline)" }}>
               {isActive ? "check_circle" : "radio_button_unchecked"}
             </span>
           </button>

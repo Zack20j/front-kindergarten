@@ -16,24 +16,25 @@ export default function BottomActionBar({
   return (
     <div
       className={[
-        "fixed bottom-0 right-0 bg-[rgba(250,249,246,0.8)] backdrop-blur-2xl border-t border-[rgba(177,178,175,0.1)] p-4 px-8 z-30 transition-[left] duration-300 ease-in-out",
-        sidebarCollapsed ? "left-0 md:left-20" : "left-0 md:left-72",
+        "fixed bottom-0 right-0 left-0 z-30 border-t border-outline-variant/50 bg-surface-container-lowest/90 p-4 px-4 backdrop-blur-xl dark:bg-surface-container-low/90 md:px-8",
+        "transition-[left] duration-300 ease-in-out",
+        sidebarCollapsed ? "md:left-20" : "md:left-72",
       ].join(" ")}
     >
-      <div className="max-w-6xl mx-auto flex justify-end items-center gap-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-end gap-2 md:gap-4">
         <button
           type="button"
           onClick={onSaveDraft}
           disabled={savingDraft || publishing}
-          className="px-6 py-3 rounded-full text-[#5d605c] font-['Plus_Jakarta_Sans'] font-semibold text-[0.875rem] hover:bg-[#e8e8e4] transition-colors focus:ring-2 focus:ring-[rgba(177,178,175,0.5)] outline-none disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+          className="rounded-full px-4 py-3 text-[0.875rem] font-semibold text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-on-surface disabled:cursor-not-allowed disabled:opacity-60 md:px-6"
         >
-          {savingDraft ? "Guardando…" : "Guardar como borrador"}
+          {savingDraft ? "Guardando…" : "Guardar borrador"}
         </button>
         <button
           type="button"
           onClick={onPublish}
           disabled={publishing || savingDraft}
-          className="px-8 py-3 rounded-full bg-gradient-to-r from-[#006789] to-[#62ccff] text-[#f4faff] font-['Plus_Jakarta_Sans'] font-bold text-[0.875rem] hover:opacity-90 active:scale-95 transition-all shadow-[inset_0_2px_4px_rgba(255,255,255,0.2)] shadow-[0_20px_40px_-10px_rgba(48,51,48,0.06)] flex items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+          className="flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[0.875rem] font-bold text-on-primary shadow-sm transition-colors hover:bg-primary-dim active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 md:px-8"
         >
           <span className="material-symbols-outlined text-[20px]">rocket_launch</span>
           {publishing ? "Publicando…" : "Publicar ahora"}

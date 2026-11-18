@@ -25,20 +25,20 @@ export default function EventPreviewPanel({ kind, title, day, month, categoryId,
   const category = getCategoryById(categoryId);
 
   return (
-    <section className="bg-white rounded-[1rem] p-8 shadow-[0_20px_40px_-10px_rgba(48,51,48,0.06)] sticky top-28">
-      <h2 className="font-['Plus_Jakarta_Sans'] text-[1.25rem] font-semibold text-[#303330] mb-6 flex items-center gap-2">
-        <span className="material-symbols-outlined text-[#8e4d39]" style={{ fontVariationSettings: "'FILL' 1" }}>preview</span>
+    <section className="sticky top-24 rounded-2xl border border-outline-variant/50 bg-surface-container-lowest p-6 md:p-8 dark:bg-surface-container-low">
+      <h2 className="mb-6 flex items-center gap-2 text-[1.25rem] font-bold text-on-surface">
+        <span className="material-symbols-outlined text-tertiary" style={{ fontVariationSettings: "'FILL' 1" }}>preview</span>
         Así se verá en la Cartelera
       </h2>
 
       <div className="space-y-4">
         {highlighted && (
-          <div className="rounded-[1rem] overflow-hidden">
+          <div className="overflow-hidden rounded-2xl">
             <UrgentBanner notice={{ active: true, text: description || "Tu mensaje aparecerá aquí." }} />
           </div>
         )}
 
-        <div className="bg-[#f4f4f0] rounded-[1rem] p-4">
+        <div className="rounded-2xl bg-surface-container-high p-4">
           {kind === "calendar" ? (
             <EventItem
               day={day}

@@ -141,18 +141,18 @@ export default function Dashboard() {
   return (
     <>
       <div className="max-w-6xl mx-auto px-6 md:px-12 py-8 pb-32">
-        <div className="mb-12 max-w-2xl">
-          <h1 className="font-['Plus_Jakarta_Sans'] text-[2rem] font-extrabold text-[#303330] tracking-tight mb-3">
+        <div className="mb-10 max-w-2xl">
+          <h1 className="mb-3 font-display text-[2rem] font-extrabold tracking-tight text-balance text-on-surface">
             Crear Publicación
           </h1>
-          <p className="font-['Plus_Jakarta_Sans'] text-[1.0625rem] text-[#5d605c] leading-relaxed">
-            Redacta y programa contenido para tus redes sociales y la cartelera del colegio.
+          <p className="text-[1.0625rem] leading-relaxed text-on-surface-variant">
+            Publica contenido en la cartelera web del colegio y compártelo por Telegram.
           </p>
         </div>
 
         {errorMessage && (
-          <div className="mb-8 max-w-2xl flex items-start gap-3 bg-[#fbeaea] border border-[#e9b8b8] text-[#ac3434] rounded-[1rem] px-5 py-4">
-            <span className="material-symbols-outlined text-[20px]">error</span>
+          <div className="mb-8 flex max-w-2xl items-start gap-3 rounded-2xl border border-error/30 bg-error-container/40 px-5 py-4 text-on-error-container">
+            <span className="material-symbols-outlined text-[20px] text-error">error</span>
             <p className="text-sm font-semibold">{errorMessage}</p>
           </div>
         )}

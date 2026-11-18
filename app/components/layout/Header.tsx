@@ -90,7 +90,7 @@ export default function Header() {
 
       <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6">
         <div
-          className={`mx-auto flex h-[68px] max-w-7xl items-center justify-between gap-3 rounded-[1.6rem] border px-3 transition-all duration-300 sm:px-5 ${
+          className={`mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 rounded-[1.6rem] border px-3 transition-all duration-300 sm:px-5 ${
             isScrolled
               ? 'border-outline-variant/70 bg-background/92 shadow-[0_18px_40px_-28px_rgba(31,48,56,0.55)] backdrop-blur-xl'
               : 'border-transparent bg-background/70 backdrop-blur-md'
@@ -125,7 +125,9 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-1.5">
-            <ThemeToggle />
+            <div className="hidden sm:block">
+              <ThemeToggle />
+            </div>
 
             <Link
               href="/login"
@@ -136,10 +138,12 @@ export default function Header() {
               <LockKeyhole className="size-[18px]" aria-hidden="true" />
             </Link>
 
-            <Link href="/admisiones" className="btn btn-primary btn-sm hidden sm:inline-flex">
-              Solicitar cupo
-              <ArrowRight className="size-4" aria-hidden="true" />
-            </Link>
+            <span className="hidden sm:inline-flex">
+              <Link href="/admisiones" className="btn btn-primary btn-sm">
+                Solicitar cupo
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+            </span>
 
             <button
               type="button"
@@ -177,7 +181,7 @@ export default function Header() {
           role="dialog"
           aria-modal="true"
           aria-label="Menú principal"
-          className={`absolute right-0 top-0 flex h-full w-[88%] max-w-sm flex-col rounded-l-[2rem] border-l border-outline-variant/40 bg-background shadow-[-24px_0_60px_-30px_rgba(0,0,0,0.55)] transition-transform duration-300 ease-out ${
+          className={`absolute right-0 top-0 flex h-[100dvh] w-[88%] max-w-sm flex-col rounded-l-[2rem] border-l border-outline-variant/40 bg-background shadow-[-24px_0_60px_-30px_rgba(0,0,0,0.55)] transition-transform duration-300 ease-out ${
             isMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
@@ -227,7 +231,7 @@ export default function Header() {
             })}
           </nav>
 
-          <div className="space-y-2 border-t border-outline-variant/40 p-4">
+          <div className="space-y-2 border-t border-outline-variant/40 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
             <Link
               href="/admisiones"
               onClick={() => setIsMenuOpen(false)}
@@ -236,6 +240,12 @@ export default function Header() {
               Solicitar cupo
               <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
+            <div className="flex items-center justify-between rounded-2xl bg-surface-container-low px-3 py-2">
+              <span className="text-xs font-bold text-on-surface-variant">
+                Apariencia
+              </span>
+              <ThemeToggle className="size-9 border-transparent bg-surface-container-lowest" />
+            </div>
             <div className="flex items-center justify-between rounded-2xl bg-surface-container-low px-3 py-2">
               <span className="text-xs font-bold text-on-surface-variant">
                 Acceso administrativo

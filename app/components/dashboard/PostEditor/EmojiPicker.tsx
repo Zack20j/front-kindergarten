@@ -32,7 +32,7 @@ export default function EmojiPicker({ onSelect, onClose }: EmojiPickerProps) {
       ref={panelRef}
       role="menu"
       aria-label="Selector de emojis"
-      className="absolute bottom-full left-0 mb-2 w-64 bg-white rounded-[1rem] shadow-[0_20px_40px_-10px_rgba(48,51,48,0.18)] border border-[#e1e3df] p-3 grid grid-cols-6 gap-1 z-20"
+      className="absolute bottom-full left-0 z-20 mb-2 grid w-64 grid-cols-6 gap-1 rounded-2xl border border-outline-variant/60 bg-surface-container-lowest p-3 shadow-[0_24px_48px_-24px_rgba(31,48,56,0.35)] dark:bg-surface-container-low"
     >
       {CONTENT_EMOJIS.map((emoji) => (
         <button
@@ -40,7 +40,7 @@ export default function EmojiPicker({ onSelect, onClose }: EmojiPickerProps) {
           type="button"
           role="menuitem"
           onClick={() => onSelect(emoji)}
-          className="text-xl leading-none p-1.5 rounded-[0.5rem] hover:bg-[#f4f4f0] transition-colors"
+          className="rounded-lg p-1.5 text-xl leading-none transition-colors hover:bg-surface-container-high"
           aria-label={`Insertar ${emoji}`}
         >
           {emoji}

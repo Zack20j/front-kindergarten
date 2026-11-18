@@ -1,4 +1,4 @@
-import { apiFetch } from "@/lib/api";
+import { apiFetch, PUBLIC_CONTENT_REVALIDATE_SECONDS } from "@/lib/api";
 import { authFetch } from "@/lib/auth";
 import type {
   EventApiCategory,
@@ -94,5 +94,7 @@ export function listPublishedEvents(query: PublishedEventsQuery = {}): Promise<E
   if (query.featured !== undefined) params.set("featured", String(query.featured));
 
   const suffix = params.toString() ? `?${params.toString()}` : "";
-  return apiFetch<EventApiResponse[]>(`/public/events${suffix}`, { cache: "no-store" });
+  return apiFetch<EventApiResponse[]>(`/public/events${suffix}`, {
+    revalidate: PUBLIC_CONTENT_REVALIDATE_SECONDS,
+  });
 }

@@ -92,7 +92,7 @@ export default function HistoriaPage() {
         }}
       />
 
-      <section className="mx-auto w-full max-w-6xl px-6 pb-16 md:pb-24">
+      <section className="mx-auto w-full max-w-6xl px-5 pb-12 sm:px-6 md:pb-24">
         <Reveal>
           <SectionHeading
             eyebrow="Misión y visión"
@@ -105,7 +105,7 @@ export default function HistoriaPage() {
           />
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
           <Reveal delay={80}>
             <InfoCard
               title="Nuestra misión"
@@ -126,13 +126,13 @@ export default function HistoriaPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-surface-container-low py-16 md:py-24">
+      <section className="relative overflow-hidden bg-surface-container-low py-12 md:py-24">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div className="blob-shape -left-20 top-16 h-64 w-64 bg-sun-container/50 blur-3xl" />
           <Star className="absolute right-[12%] top-16 size-7 rotate-12 text-primary/25" />
         </div>
 
-        <div className="relative mx-auto w-full max-w-6xl px-6">
+        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6">
           <Reveal>
             <SectionHeading
               eyebrow="Línea de tiempo"
@@ -145,11 +145,11 @@ export default function HistoriaPage() {
               icon={BookOpen}
               align="center"
               tone="primary"
-              className="mb-12"
+              className="mb-8 md:mb-12"
             />
           </Reveal>
 
-          <ol className="relative grid gap-8 md:grid-cols-5 md:gap-4">
+          <ol className="relative grid gap-7 md:grid-cols-5 md:gap-4">
             <span
               aria-hidden="true"
               className="absolute left-[21px] top-2 h-[calc(100%-1rem)] w-0.5 rounded-full bg-outline-variant/70 md:left-0 md:top-[21px] md:h-0.5 md:w-full"
@@ -168,7 +168,7 @@ export default function HistoriaPage() {
                   <Star className="size-4 fill-current" />
                 </span>
 
-                <span className="font-display text-3xl font-extrabold leading-none text-primary">
+                <span className="font-display text-2xl font-extrabold leading-none text-primary sm:text-3xl">
                   {item.year}
                 </span>
                 <h3 className="mt-2 font-display text-base font-extrabold text-on-surface">
@@ -204,9 +204,9 @@ export default function HistoriaPage() {
         reverse
       />
 
-      <section className="mx-auto w-full max-w-5xl px-6 pb-16">
+      <section className="mx-auto w-full max-w-5xl px-5 pb-12 sm:px-6 sm:pb-16">
         <Reveal>
-          <div className="flex flex-col items-start justify-between gap-5 rounded-[2rem] border border-outline-variant/40 bg-surface-container-low p-7 sm:flex-row sm:items-center sm:p-8">
+          <div className="flex flex-col items-start justify-between gap-4 rounded-[1.5rem] border border-outline-variant/40 bg-surface-container-low p-5 sm:flex-row sm:items-center sm:rounded-[2rem] sm:p-8">
             <div>
               <h2 className="font-display text-2xl font-extrabold text-on-surface">
                 ¿Quieres ser parte de nuestra historia?
@@ -215,7 +215,7 @@ export default function HistoriaPage() {
                 Conoce el jardín y descubre cómo acompañamos a cada familia.
               </p>
             </div>
-            <Link href="/contacto" className="btn btn-primary shrink-0">
+            <Link href="/contacto" className="btn btn-primary w-full shrink-0 sm:w-auto">
               Agendar visita
               <ArrowRight className="size-5" aria-hidden="true" />
             </Link>

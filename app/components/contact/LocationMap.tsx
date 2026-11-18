@@ -12,8 +12,8 @@ export default function LocationMap({
   mapsHref = 'https://maps.google.com/?q=Centro+de+Educacion+Inicial+Luisa+Caceres+de+Arismendi',
 }: LocationMapProps) {
   return (
-    <figure className="overflow-hidden rounded-[2rem] border-[5px] border-surface-container-lowest bg-surface-container-lowest shadow-[0_24px_50px_-34px_rgba(31,48,56,0.45)]">
-      <figcaption className="flex flex-wrap items-center justify-between gap-3 bg-surface-container-low px-5 py-4">
+    <figure className="overflow-hidden rounded-[1.5rem] border-[4px] border-surface-container-lowest bg-surface-container-lowest shadow-[0_24px_50px_-34px_rgba(31,48,56,0.45)] sm:rounded-[2rem] sm:border-[5px]">
+      <figcaption className="flex flex-wrap items-center justify-between gap-2 bg-surface-container-low px-4 py-3 sm:gap-3 sm:px-5 sm:py-4">
         <span className="flex items-center gap-2 font-display text-base font-extrabold text-on-surface">
           <span className="grid size-8 place-items-center rounded-lg bg-tertiary-container text-tertiary">
             <MapPin className="size-4" aria-hidden="true" />
@@ -25,7 +25,7 @@ export default function LocationMap({
           href={mapsHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-primary-dim"
+          className="inline-flex min-h-11 items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-primary-dim"
         >
           Abrir en Google Maps
           <ExternalLink className="size-4" aria-hidden="true" />

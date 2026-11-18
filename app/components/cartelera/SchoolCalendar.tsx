@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import { CalendarDays, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { getEventApiMeta } from "@/data/eventCategories";
 import {
   buildMonthGrid,
@@ -19,16 +20,15 @@ const WEEKDAYS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
 
 interface SchoolCalendarProps {
   initialEvents: EventApiResponse[];
+  initialToday: string;
 }
 
-export default function SchoolCalendar({ initialEvents }: SchoolCalendarProps) {
-  const today = todayCalendarDate();
-  const [year, setYear] = useState(() => Number(today.slice(0, 4)));
-  const [month, setMonth] = useState(() => Number(today.slice(5, 7)) - 1);
+export default function SchoolCalendar({ initialEvents, initialToday }: SchoolCalendarProps) {
+  const [year, setYear] = useState(() => Number(initialToday.slice(0, 4)));
+  const [month, setMonth] = useState(() => Number(initialToday.slice(5, 7)) - 1);
   const [events, setEvents] = useState<EventApiResponse[]>(initialEvents);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [hoveredDate, setHoveredDate] = useState<string | null>(null);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const requestId = useRef(0);
 
@@ -92,67 +92,87 @@ export default function SchoolCalendar({ initialEvents }: SchoolCalendarProps) {
 
   return (
     <section>
-      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-        <h2 className="font-extrabold text-2xl md:text-3xl text-on-surface">Calendario Escolar</h2>
+      <div className="mb-4 flex flex-col gap-3 sm:mb-5 sm:gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex items-center gap-3">
+          <span
+            className="icon-tile size-11 shrink-0 bg-secondary-container text-secondary sm:size-12"
+            aria-hidden="true"
+          >
+            <CalendarDays className="size-5 sm:size-6" strokeWidth={2.1} />
+          </span>
+          <div>
+            <p className="text-[0.66rem] font-extrabold uppercase tracking-[0.14em] text-secondary sm:text-[0.68rem] sm:tracking-[0.16em]">
+              Fechas y actividades
+            </p>
+            <h2 className="font-display text-2xl font-extrabold leading-tight text-on-surface md:text-3xl">
+              Calendario Escolar
+            </h2>
+          </div>
+        </div>
 
         <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => goToMonth(-1)}
-            aria-label="Mes anterior"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-container text-on-surface-variant transition-colors hover:bg-surface-container-high"
-          >
-            <span className="material-symbols-outlined text-xl">chevron_left</span>
-          </button>
-          <span className="min-w-[9.5rem] text-center text-sm font-bold capitalize text-on-surface">
-            {monthLabelEs(year, month)}
-          </span>
-          <button
-            type="button"
-            onClick={() => goToMonth(1)}
-            aria-label="Mes siguiente"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-container text-on-surface-variant transition-colors hover:bg-surface-container-high"
-          >
-            <span className="material-symbols-outlined text-xl">chevron_right</span>
-          </button>
+          <div className="flex min-w-0 flex-1 items-center gap-1 rounded-full border border-outline-variant/50 bg-surface-container-lowest p-1 sm:flex-none">
+            <button
+              type="button"
+              onClick={() => goToMonth(-1)}
+              aria-label="Mes anterior"
+              className="grid size-9 shrink-0 place-items-center rounded-full text-on-surface-variant transition-colors hover:bg-primary-container/60 hover:text-primary"
+            >
+              <ChevronLeft className="size-4" aria-hidden="true" />
+            </button>
+            <span className="min-w-0 flex-1 text-center text-sm font-extrabold text-on-surface sm:min-w-[8.5rem] sm:flex-none">
+              {monthLabelEs(year, month)}
+            </span>
+            <button
+              type="button"
+              onClick={() => goToMonth(1)}
+              aria-label="Mes siguiente"
+              className="grid size-9 shrink-0 place-items-center rounded-full text-on-surface-variant transition-colors hover:bg-primary-container/60 hover:text-primary"
+            >
+              <ChevronRight className="size-4" aria-hidden="true" />
+            </button>
+          </div>
           <button
             type="button"
             onClick={goToToday}
-            className="ml-1 rounded-full border border-outline-variant/40 px-3 py-1.5 text-xs font-bold text-primary transition-colors hover:bg-primary-container/10"
+            className="min-h-11 shrink-0 rounded-full border border-outline-variant/50 px-4 text-xs font-extrabold text-primary transition-colors hover:bg-primary-container/40"
           >
             Hoy
           </button>
         </div>
       </div>
 
+      <p className="mb-3 flex items-center gap-1.5 text-xs font-semibold text-on-surface-variant md:hidden">
+        <span className="size-1.5 rounded-full bg-primary" aria-hidden="true" />
+        Los puntos marcan días con eventos. Toca uno para ver el detalle.
+      </p>
+
       {errorMessage && (
-        <p className="mb-3 rounded-xl bg-tertiary-container/20 px-4 py-2 text-sm font-semibold text-tertiary">
+        <p className="mb-3 rounded-xl bg-error-container px-4 py-2 text-sm font-semibold text-on-error-container">
           {errorMessage}
         </p>
       )}
 
-      <div className="relative rounded-2xl bg-surface-container-lowest p-3 shadow-[0_4px_20px_rgba(48,51,48,0.05)] md:p-4">
+      <div className="relative rounded-[1.75rem] border border-outline-variant/40 bg-surface-container-lowest p-2.5 shadow-[0_22px_44px_-30px_rgba(31,48,56,0.34)] sm:p-4">
         {isLoading && (
-          <div className="absolute right-4 top-4 z-20 flex items-center gap-2 rounded-full bg-surface-container-lowest/90 px-3 py-1.5 text-xs font-semibold text-on-surface-variant shadow-sm">
-            <span className="material-symbols-outlined text-[18px] animate-spin text-primary">
-              progress_activity
-            </span>
+          <div className="absolute right-3 top-3 z-20 flex items-center gap-2 rounded-full bg-surface-container-lowest/90 px-3 py-1.5 text-xs font-semibold text-on-surface-variant shadow-sm backdrop-blur sm:right-4 sm:top-4">
+            <Loader2 className="size-4 animate-spin text-primary" aria-hidden="true" />
             Cargando
           </div>
         )}
 
-        <div className="mb-2 grid grid-cols-7 gap-1.5">
+        <div className="mb-2 grid grid-cols-7 gap-1 sm:gap-1.5">
           {WEEKDAYS.map((weekday) => (
             <div
               key={weekday}
-              className="py-2 text-center text-[11px] font-bold uppercase tracking-wide text-on-surface-variant"
+              className="py-2 text-center text-[10px] font-extrabold uppercase tracking-[0.08em] text-on-surface-variant sm:text-[11px] sm:tracking-wide"
             >
               {weekday}
             </div>
           ))}
         </div>
 
-        <div className="grid grid-cols-7 gap-1.5">
+        <div className="grid grid-cols-7 gap-1 sm:gap-1.5">
           {days.map((day, index) => {
             const dayEvents = eventsByDate.get(day.date) ?? [];
             const hasEvents = dayEvents.length > 0;
@@ -165,19 +185,15 @@ export default function SchoolCalendar({ initialEvents }: SchoolCalendarProps) {
                   : "left-1/2 -translate-x-1/2";
 
             return (
-              <div key={day.date} className="relative">
+              <div key={day.date} className="group relative">
                 <button
                   type="button"
-                  onMouseEnter={() => hasEvents && setHoveredDate(day.date)}
-                  onMouseLeave={() => setHoveredDate(null)}
-                  onFocus={() => hasEvents && setHoveredDate(day.date)}
-                  onBlur={() => setHoveredDate(null)}
                   onClick={() => hasEvents && setSelectedDate(day.date)}
                   aria-label={`${formatCalendarDateLong(day.date)}${
                     hasEvents ? `, ${dayEvents.length} evento(s)` : ""
                   }`}
                   className={[
-                    "relative flex h-20 w-full flex-col gap-1 rounded-xl border p-1.5 text-left transition-colors md:h-28",
+                    "relative flex h-16 w-full min-w-0 flex-col gap-1 rounded-xl border p-1 text-left transition-colors sm:h-20 sm:p-1.5 md:h-24",
                     day.inMonth
                       ? "text-on-surface"
                       : "text-on-surface-variant/50",
@@ -229,9 +245,9 @@ export default function SchoolCalendar({ initialEvents }: SchoolCalendarProps) {
                   </span>
                 </button>
 
-                {hoveredDate === day.date && hasEvents && (
+                {hasEvents && (
                   <div
-                    className={`pointer-events-none absolute top-full z-30 mt-2 hidden w-72 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-3 shadow-[0_20px_50px_-15px_rgba(48,51,48,0.4)] md:block ${tooltipPosition}`}
+                    className={`pointer-events-none absolute top-full z-30 mt-2 hidden w-72 rounded-xl border border-outline-variant/30 bg-surface-container-lowest p-3 shadow-[0_20px_50px_-15px_rgba(48,51,48,0.4)] md:group-focus-within:block md:group-hover:block ${tooltipPosition}`}
                   >
                     <p className="mb-2 text-[11px] font-bold uppercase tracking-wide text-primary">
                       {formatCalendarDateLong(day.date)}

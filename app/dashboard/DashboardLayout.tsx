@@ -9,7 +9,7 @@ import { clearSession, fetchCurrentUser, getToken } from "@/lib/auth";
 import type { AuthUser } from "@/types/auth";
 
 const SCHOOL_NAME = "UEC Luisa Cáceres";
-const LOGO_URL = "/images/Logo.jpg";
+const LOGO_URL = "/images/logo.png";
 const AVATAR_URL = "/images/avatar.png";
 const PAGE_LABELS: Record<string, string> = {
   "/dashboard": "Nueva Publicación",
@@ -28,6 +28,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [user, setUser] = useState<AuthUser | null>(null);
 
   useEffect(() => {
@@ -57,8 +58,8 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-[#f4f4f0] text-[#5d605c]">
-        <span className="material-symbols-outlined text-[32px] text-[#006789] animate-spin">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-background text-on-surface-variant">
+        <span className="material-symbols-outlined text-[32px] text-primary animate-spin">
           progress_activity
         </span>
         <p className="text-sm font-semibold tracking-tight">Verificando sesión…</p>
@@ -83,7 +84,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
   return (
     <SidebarCollapsedContext.Provider value={isSidebarCollapsed}>
-      <div className="bg-[#f4f4f0] text-[#303330] min-h-screen flex">
+      <div className="bg-background text-on-surface min-h-screen flex">
         <Sidebar
           schoolName={SCHOOL_NAME}
           logoUrl={LOGO_URL}
@@ -91,9 +92,11 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           onToggleCollapse={() => setIsSidebarCollapsed((collapsed) => !collapsed)}
           activeItemId={activeItem?.id}
           currentPathname={pathname}
+          mobileOpen={isMobileSidebarOpen}
+          onCloseMobile={() => setIsMobileSidebarOpen(false)}
         />
 
-        <main className="flex-1 min-w-0 relative bg-[#f4f4f0] scroll-smooth">
+        <main className="flex-1 min-w-0 relative bg-background scroll-smooth">
           <Header
             schoolName={SCHOOL_NAME}
             section={section}
@@ -101,6 +104,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             avatarUrl={AVATAR_URL}
             userName={user.fullName}
             onLogout={handleLogout}
+            onOpenMenu={() => setIsMobileSidebarOpen(true)}
           />
           {children}
         </main>

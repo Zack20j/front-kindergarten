@@ -1,5 +1,8 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
 
+/** Revalidación del contenido público (cartelera, publicaciones y eventos). */
+export const PUBLIC_CONTENT_REVALIDATE_SECONDS = 60;
+
 interface ProblemDetail {
   detail?: string;
   errors?: Record<string, string>;
@@ -23,6 +26,8 @@ export interface ApiFetchOptions {
   token?: string | null;
   signal?: AbortSignal;
   cache?: RequestCache;
+  /** Segundos de revalidación de la Data Cache de Next (solo en el servidor). */
+  revalidate?: number;
 }
 
 /**
@@ -31,7 +36,7 @@ export interface ApiFetchOptions {
  * También acepta FormData para subidas multipart (sin Content-Type manual).
  */
 export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): Promise<T> {
-  const { method = "GET", body, token, signal, cache } = options;
+  const { method = "GET", body, token, signal, cache, revalidate } = options;
   const isFormData = typeof FormData !== "undefined" && body instanceof FormData;
 
   let response: Response;
@@ -45,6 +50,7 @@ export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): 
       body: body === undefined ? undefined : isFormData ? (body as FormData) : JSON.stringify(body),
       signal,
       cache,
+      ...(revalidate === undefined ? {} : { next: { revalidate } }),
     });
   } catch {
     throw new ApiError(0, "No se pudo conectar con el servidor. Verifica que la API esté en línea.");

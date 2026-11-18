@@ -8,8 +8,8 @@ interface EventMessageInputProps {
 export default function EventMessageInput({ value, onChange }: EventMessageInputProps) {
   return (
     <div>
-      <label className="block text-sm font-bold text-[#303330] mb-2" htmlFor="event-description">
-        Mensaje para las familias <span className="text-[#ac3434]">*</span>
+      <label className="mb-2 block text-sm font-bold text-on-surface" htmlFor="event-description">
+        Mensaje para las familias <span className="text-error">*</span>
       </label>
       <textarea
         id="event-description"
@@ -18,11 +18,11 @@ export default function EventMessageInput({ value, onChange }: EventMessageInput
         onChange={(e) => onChange(e.target.value)}
         rows={3}
         placeholder="Escribe una breve explicación del evento..."
-        className="w-full bg-[#f4f4f0] border-2 border-transparent focus:border-[#006789] focus:bg-white text-[#303330] text-[0.9375rem] rounded-[1rem] p-4 focus:outline-none transition-all placeholder:text-[rgba(93,96,92,0.4)] leading-relaxed resize-none"
+        className="w-full resize-none rounded-2xl border border-outline-variant bg-surface-container-low dark:bg-surface-container-lowest p-4 text-[0.9375rem] leading-relaxed text-on-surface transition-colors placeholder:text-on-surface-variant focus:border-primary focus:bg-surface-container-lowest dark:focus:bg-surface-container"
       />
-      <div className="flex items-center justify-between mt-1.5">
-        <span className="text-xs text-[#5d605c]">Texto claro y corto, fácil de leer desde un celular.</span>
-        <span className="text-xs text-[rgba(93,96,92,0.6)] font-medium shrink-0 ml-3">{value.length} / {MAX_DESCRIPTION_LENGTH}</span>
+      <div className="mt-1.5 flex items-center justify-between">
+        <span className="text-xs text-on-surface-variant">Texto claro y corto, fácil de leer desde un celular.</span>
+        <span className="ml-3 shrink-0 text-xs font-medium text-on-surface-variant">{value.length} / {MAX_DESCRIPTION_LENGTH}</span>
       </div>
     </div>
   );

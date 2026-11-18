@@ -12,7 +12,7 @@ const ITEMS = [
 
 export default function MarqueeRibbon() {
   return (
-    <div className="overflow-hidden py-8">
+    <div className="overflow-hidden py-6 md:py-8">
       <div className="marquee -rotate-1 border-y-2 border-on-sun/15 bg-sun py-3 text-on-sun shadow-[0_10px_30px_-18px_rgba(62,42,0,0.6)]">
         <div className="marquee-track">
           {[0, 1].map((copy) => (
@@ -24,7 +24,7 @@ export default function MarqueeRibbon() {
               {ITEMS.map((item) => (
                 <span
                   key={`${copy}-${item}`}
-                  className="flex items-center gap-3 px-6 text-sm font-extrabold uppercase tracking-[0.2em]"
+                  className="flex items-center gap-3 px-6 text-xs font-extrabold uppercase tracking-[0.2em] sm:text-sm"
                 >
                   <Star className="size-4 fill-current" aria-hidden="true" />
                   {item}
