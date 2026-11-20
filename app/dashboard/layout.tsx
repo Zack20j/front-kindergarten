@@ -5,8 +5,11 @@ export default function DashboardSegmentLayout({ children }: { children: ReactNo
   return (
     <>
       <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet"
+        rel="preload"
+        href="/fonts/material-symbols-outlined.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
       />
       <DashboardLayout>{children}</DashboardLayout>
     </>

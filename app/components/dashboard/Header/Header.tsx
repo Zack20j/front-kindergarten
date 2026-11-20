@@ -24,7 +24,7 @@ export default function Header({
   const [isHelpOpen, setIsHelpOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-10 w-full border-b border-outline-variant/40 bg-background/85 backdrop-blur-xl">
+    <header className="sticky top-0 z-10 w-full border-b border-outline-variant/40 bg-background/85 backdrop-blur-xl print:hidden">
       <div className="flex items-center justify-between gap-4 px-4 py-4 md:px-8 md:py-5">
         <div className="flex min-w-0 items-center gap-3 md:hidden">
           <button

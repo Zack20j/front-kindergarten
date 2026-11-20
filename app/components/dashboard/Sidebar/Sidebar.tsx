@@ -1,11 +1,13 @@
 import Image from "next/image";
 import NavLink from "./NavLink";
 import { NAV_ITEMS, ACTIVE_NAV_ID } from "@/data/navigation";
+import type { NavItem } from "@/types/post";
 import { useState } from "react";
 
 interface SidebarProps {
   schoolName: string;
   logoUrl: string;
+  items?: NavItem[];
   collapsed: boolean;
   onToggleCollapse: () => void;
   activeItemId?: string;
@@ -17,6 +19,7 @@ interface SidebarProps {
 export default function Sidebar({
   schoolName,
   logoUrl,
+  items = NAV_ITEMS,
   collapsed,
   onToggleCollapse,
   activeItemId = ACTIVE_NAV_ID,
@@ -47,7 +50,7 @@ export default function Sidebar({
       <nav
         aria-label="Navegación del panel"
         className={[
-          "fixed inset-y-0 left-0 z-50 flex flex-col bg-surface-container-low border-r border-outline-variant/50 shadow-[0_24px_60px_-32px_rgba(31,48,56,0.35)]",
+          "fixed inset-y-0 left-0 z-50 flex flex-col bg-surface-container-low border-r border-outline-variant/50 shadow-[0_24px_60px_-32px_rgba(31,48,56,0.35)] print:hidden",
           "md:sticky md:top-0 md:self-start md:h-screen md:translate-x-0 md:shadow-none md:transition-[width]",
           "transition-transform duration-300 ease-out",
           isCollapsed ? "w-72 md:w-20" : "w-72",
@@ -86,7 +89,7 @@ export default function Sidebar({
           </div>
 
           <div className="flex-1 space-y-1 w-full">
-            {NAV_ITEMS.map((item) => (
+            {items.map((item) => (
               <NavLink
                 key={item.id}
                 item={item}

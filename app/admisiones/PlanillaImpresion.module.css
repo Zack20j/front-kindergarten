@@ -1,0 +1,239 @@
+.sheet {
+  width: 8.5in;
+  min-height: 11in;
+  padding: 0.22in 0.34in;
+  background: #ffffff;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 8pt;
+  line-height: 1.2;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1.05in 1fr 1.15in;
+  gap: 0.12in;
+  align-items: start;
+}
+
+.logo {
+  width: 0.95in;
+  height: 0.95in;
+  object-fit: contain;
+}
+
+.institution {
+  padding-top: 0.03in;
+  text-align: center;
+  font-size: 8.2pt;
+  font-weight: 600;
+  line-height: 1.28;
+  text-transform: uppercase;
+}
+
+.school {
+  font-weight: 800;
+}
+
+.year {
+  margin-top: 1pt;
+  font-weight: 700;
+}
+
+.photoBox {
+  display: flex;
+  width: 1.15in;
+  height: 1.35in;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1.4pt solid #000000;
+  background: #ffffff;
+  text-align: center;
+  font-size: 6.2pt;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.photoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title {
+  margin: 0.06in 0 0.04in;
+  text-align: center;
+  font-size: 12pt;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.sectionBar {
+  margin-top: 3pt;
+  border: 1.1pt solid #000000;
+  border-bottom: none;
+  background: #f0f0f0;
+  padding: 1.1pt 4pt;
+  font-size: 7.6pt;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.block {
+  border: 1.1pt solid #000000;
+  break-inside: avoid;
+}
+
+.block + .block {
+  margin-top: 2pt;
+}
+
+.row {
+  display: grid;
+  border-bottom: 0.8pt solid #000000;
+  break-inside: avoid;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.cell {
+  min-width: 0;
+  min-height: 0.205in;
+  border-right: 0.8pt solid #000000;
+  padding: 1.1pt 3.5pt;
+  overflow-wrap: anywhere;
+}
+
+.cell:last-child {
+  border-right: none;
+}
+
+.label {
+  display: block;
+  font-size: 5.7pt;
+  font-weight: 700;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: #1a1a1a;
+}
+
+.value {
+  min-height: 7pt;
+  margin-top: 0.5pt;
+  font-size: 7.8pt;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: pre-wrap;
+}
+
+.muted {
+  color: #777777;
+}
+
+.checkLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2pt 7pt;
+  margin-top: 2pt;
+  font-size: 7.7pt;
+  line-height: 1.2;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.5pt;
+  white-space: nowrap;
+}
+
+.box {
+  display: inline-grid;
+  width: 8.5pt;
+  height: 8.5pt;
+  place-items: center;
+  border: 0.9pt solid #000000;
+  font-size: 6.4pt;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.subBar {
+  border-bottom: 0.8pt solid #000000;
+  background: #f5f5f5;
+  padding: 1pt 3.5pt;
+  font-size: 6.4pt;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.acta {
+  margin-top: 4pt;
+  break-inside: avoid;
+}
+
+.actaTitle {
+  font-size: 8pt;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.actaText {
+  margin-top: 1pt;
+  text-align: justify;
+  font-size: 7.1pt;
+  line-height: 1.22;
+}
+
+.actaText p {
+  margin: 0 0 2pt;
+}
+
+.signatureGrid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 0.4in;
+  margin-top: 0.15in;
+  align-items: end;
+}
+
+.signatureBox {
+  min-height: 0.5in;
+  border-bottom: 0.9pt solid #000000;
+  padding-bottom: 2pt;
+  text-align: center;
+  font-size: 7pt;
+  line-height: 1.25;
+}
+
+.signatureImage {
+  display: block;
+  max-width: 2.4in;
+  max-height: 0.5in;
+  margin: 0 auto 1pt;
+  object-fit: contain;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.2in;
+  margin-top: 2pt;
+  font-size: 6pt;
+  color: #444444;
+}
+
+@media print {
+  .sheet {
+    width: 8.5in;
+    min-height: 11in;
+    margin: 0;
+    padding: 0.22in 0.34in;
+    box-shadow: none;
+  }
+}

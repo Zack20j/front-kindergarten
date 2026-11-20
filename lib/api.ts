@@ -68,3 +68,40 @@ export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): 
 
   return payload as T;
 }
+
+/**
+ * Descarga un recurso binario autenticado (por ejemplo, un documento de
+ * inscripción). Los errores llegan igual que en `apiFetch`.
+ */
+export async function apiFetchBlob(
+  path: string,
+  options: Pick<ApiFetchOptions, "method" | "body" | "token" | "signal" | "cache"> = {},
+): Promise<Blob> {
+  const { method = "GET", body, token, signal, cache } = options;
+
+  let response: Response;
+  try {
+    response = await fetch(`${API_URL}/api/v1${path}`, {
+      method,
+      headers: {
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: body === undefined ? undefined : body instanceof FormData ? body : JSON.stringify(body),
+      signal,
+      cache,
+    });
+  } catch {
+    throw new ApiError(0, "No se pudo conectar con el servidor. Verifica que la API esté en línea.");
+  }
+
+  if (!response.ok) {
+    const payload = (await response.json().catch(() => null)) as ProblemDetail | null;
+    throw new ApiError(
+      response.status,
+      payload?.detail ?? "Ocurrió un error inesperado",
+      payload?.errors,
+    );
+  }
+
+  return response.blob();
+}

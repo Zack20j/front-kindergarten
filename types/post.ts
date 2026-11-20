@@ -1,3 +1,5 @@
+import type { AuthRole } from "./auth";
+
 export type ChannelId = "telegram" | "facebook" | "instagram";
 
 export type ChannelApiName = "TELEGRAM" | "FACEBOOK" | "INSTAGRAM";
@@ -66,6 +68,7 @@ export interface NavItem {
   icon: string;
   iconFilled: boolean;
   href: string;
+  roles?: AuthRole[];
   children?: NavSubItem[];
 }
 

@@ -9,7 +9,9 @@ import {
   House,
   Images,
   LockKeyhole,
+  MapPin,
   Menu,
+  Network,
   MessageCircleHeart,
   Newspaper,
   Users,
@@ -36,13 +38,15 @@ const NAV_LINKS: NavLinkItem[] = [
     icon: Users,
     children: [
       { label: 'Reseña Histórica', href: '/nosotros/historia' },
-      { label: 'Organigrama', href: '#' },
+      { label: 'Organigrama', href: '/organigrama' },
       { label: 'PEIC', href: '#' },
     ],
   },
   { label: 'Cartelera', href: '/cartelera', icon: Newspaper },
   { label: 'Galería', href: '/galeria', icon: Images },
-  { label: 'Admisiones', href: '/admisiones', icon: ClipboardCheck },
+  { label: 'Inscripción', href: '/admisiones', icon: ClipboardCheck },
+  { label: 'Ubicación', href: '/ubicacion', icon: MapPin },
+  { label: 'Organigrama', href: '/organigrama', icon: Network },
   { label: 'Contacto', href: '/contacto', icon: MessageCircleHeart },
 ];
 
@@ -83,12 +87,12 @@ export default function Header() {
     <>
       <a
         href="#contenido"
-        className="sr-only fixed left-4 top-4 z-[100] rounded-full bg-primary px-5 py-3 font-bold text-on-primary focus:not-sr-only"
+        className="sr-only fixed left-4 top-4 z-[100] rounded-full bg-primary px-5 py-3 font-bold text-on-primary focus:not-sr-only print:hidden"
       >
         Saltar al contenido
       </a>
 
-      <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6">
+      <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 print:hidden">
         <div
           className={`mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 rounded-[1.6rem] border px-3 transition-all duration-300 sm:px-5 ${
             isScrolled
@@ -98,7 +102,7 @@ export default function Header() {
         >
           <Logo />
 
-          <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Navegación principal">
+          <nav className="hidden items-center gap-0.5 xl:flex" aria-label="Navegación principal">
             {NAV_LINKS.map((link) =>
               link.children ? (
                 <NavDropdown
@@ -112,7 +116,7 @@ export default function Header() {
                   key={link.label}
                   href={link.href}
                   aria-current={isActive(link.href) ? 'page' : undefined}
-                  className={`rounded-full px-3.5 py-2 text-sm font-bold transition-all duration-200 ${
+                  className={`rounded-full px-2.5 py-2 text-[0.82rem] font-bold transition-all duration-200 ${
                     isActive(link.href)
                       ? 'bg-primary-container text-on-primary-container shadow-[inset_0_-2px_0_rgba(12,108,139,0.16)]'
                       : 'text-on-surface-variant hover:bg-primary-container/45 hover:text-primary'
@@ -151,7 +155,7 @@ export default function Header() {
               aria-label="Abrir menú"
               aria-expanded={isMenuOpen}
               aria-controls="menu-movil"
-              className="grid size-11 place-items-center rounded-full border border-outline-variant/60 text-on-surface-variant transition-colors hover:border-primary/40 hover:bg-primary-container/40 hover:text-primary lg:hidden"
+              className="grid size-11 place-items-center rounded-full border border-outline-variant/60 text-on-surface-variant transition-colors hover:border-primary/40 hover:bg-primary-container/40 hover:text-primary xl:hidden"
             >
               <Menu className="size-5" aria-hidden="true" />
             </button>
@@ -160,7 +164,7 @@ export default function Header() {
       </header>
 
       <div
-        className={`fixed inset-0 z-[60] lg:hidden ${
+        className={`fixed inset-0 z-[60] xl:hidden print:hidden ${
           isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'
         }`}
         aria-hidden={!isMenuOpen}

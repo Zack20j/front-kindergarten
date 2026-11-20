@@ -17,7 +17,7 @@ export default function AppShell({ children, footer }: AppShellProps) {
   return (
     <>
       {!hideShell && <Header />}
-      {!hideShell && <div aria-hidden="true" className="h-[88px] shrink-0" />}
+      {!hideShell && <div aria-hidden="true" className="h-[88px] shrink-0 print:hidden" />}
       <div id="contenido" className="flex flex-1 flex-col">
         {children}
       </div>

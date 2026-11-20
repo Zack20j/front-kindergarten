@@ -14,6 +14,14 @@ export const NAV_ITEMS: NavItem[] = [
       { id: "schedule-new-event", label: "Nuevo evento", href: "/dashboard/schedule/nuevo-evento" },
     ],
   },
+  {
+    id: "enrollments",
+    label: "Inscripciones",
+    icon: "assignment_ind",
+    iconFilled: false,
+    href: "/dashboard/inscripciones",
+    roles: ["ADMIN"],
+  },
   { id: "settings", label: "Nada por ahora", icon: "settings", iconFilled: false, href: "#" },
 ];
 

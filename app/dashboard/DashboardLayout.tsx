@@ -16,6 +16,7 @@ const PAGE_LABELS: Record<string, string> = {
   "/dashboard/schedule": "Publicaciones",
   "/dashboard/schedule/nueva-publicacion": "Nueva Publicación",
   "/dashboard/schedule/nuevo-evento": "Nuevo Evento",
+  "/dashboard/inscripciones": "Inscripciones",
 };
 
 const SidebarCollapsedContext = createContext(false);
@@ -76,18 +77,29 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
     .filter(
       (item) =>
         item.href !== "#" &&
+        (!item.roles || item.roles.includes(user.role)) &&
         (pathname === item.href || (item.id !== "announcements" && pathname.startsWith(`${item.href}/`)))
     )
     .sort((first, second) => second.href.length - first.href.length)[0];
   const section = activeItem?.label ?? "Dashboard";
-  const currentPage = PAGE_LABELS[pathname] ?? pathname.split("/").filter(Boolean).at(-1) ?? section;
+  const currentPage =
+    PAGE_LABELS[pathname] ??
+    (pathname.startsWith("/dashboard/inscripciones/")
+      ? pathname.endsWith("/editar")
+        ? "Editar inscripción"
+        : "Detalle de inscripción"
+      : pathname.split("/").filter(Boolean).at(-1) ?? section);
+  const visibleNavItems = NAV_ITEMS.filter(
+    (item) => !item.roles || item.roles.includes(user.role),
+  );
 
   return (
     <SidebarCollapsedContext.Provider value={isSidebarCollapsed}>
-      <div className="bg-background text-on-surface min-h-screen flex">
+      <div className="bg-background text-on-surface min-h-screen flex print:block print:min-h-0 print:bg-white">
         <Sidebar
           schoolName={SCHOOL_NAME}
           logoUrl={LOGO_URL}
+          items={visibleNavItems}
           collapsed={isSidebarCollapsed}
           onToggleCollapse={() => setIsSidebarCollapsed((collapsed) => !collapsed)}
           activeItemId={activeItem?.id}
@@ -96,7 +108,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           onCloseMobile={() => setIsMobileSidebarOpen(false)}
         />
 
-        <main className="flex-1 min-w-0 relative bg-background scroll-smooth">
+        <main className="flex-1 min-w-0 relative bg-background scroll-smooth print:bg-white">
           <Header
             schoolName={SCHOOL_NAME}
             section={section}

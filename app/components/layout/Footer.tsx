@@ -16,9 +16,11 @@ import PeekingKid from '../ui/PeekingKid';
 const EXPLORE_LINKS = [
   { label: 'Inicio', href: '/' },
   { label: 'Nosotros', href: '/nosotros/historia' },
+  { label: 'Organigrama', href: '/organigrama' },
   { label: 'Cartelera', href: '/cartelera' },
   { label: 'Galería', href: '/galeria' },
-  { label: 'Admisiones', href: '/admisiones' },
+  { label: 'Inscripción', href: '/admisiones' },
+  { label: 'Ubicación', href: '/ubicacion' },
   { label: 'Contacto', href: '/contacto' },
 ];
 
@@ -32,7 +34,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <div className="relative mt-12 w-full md:mt-16">
+    <div className="relative mt-12 w-full md:mt-16 print:hidden">
       <PeekingKid
         kid="nino"
         width={120}

@@ -11,7 +11,6 @@ import {
   Sparkles,
 } from 'lucide-react';
 import ContactCard from '../components/contact/ContactCard';
-import LocationMap from '../components/contact/LocationMap';
 import PageHero from '../components/ui/PageHero';
 import Reveal from '../components/ui/Reveal';
 
@@ -136,21 +135,21 @@ export default function ContactoPage() {
           </div>
         </Reveal>
 
-        <Reveal delay={120}>
-          <div className="mt-6 md:mt-10">
-            <LocationMap embedSrc="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3948.207939505003!2d-62.72478140347875!3d8.282092610364469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8dcbfbddf55f0f95%3A0x1473365a96461b5f!2sCentro%20de%20Educaci%C3%B3n%20Inicial%20Luisa%20C%C3%A1ceres%20de%20Arismendi!5e0!3m2!1sen!2sus!4v1786489645178!5m2!1sen!2sus" />
-          </div>
-        </Reveal>
-
         <Reveal delay={140}>
           <div className="mt-6 flex flex-col items-start justify-between gap-4 rounded-[1.5rem] border border-outline-variant/40 bg-surface-container-low p-5 sm:mt-8 sm:flex-row sm:items-center sm:rounded-[1.75rem]">
             <p className="flex items-center gap-2 text-sm font-semibold text-on-surface-variant">
               <Sparkles className="size-4 text-tertiary" aria-hidden="true" />
               ¿Prefieres una visita? Te recibimos con mucho gusto.
             </p>
-            <Link href="/admisiones" className="btn btn-primary btn-sm w-full shrink-0 sm:w-auto">
-              Solicitar cupo
-            </Link>
+            <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+              <Link href="/ubicacion" className="btn btn-ghost btn-sm w-full sm:w-auto">
+                <MapPin className="size-4" aria-hidden="true" />
+                Ver ubicación
+              </Link>
+              <Link href="/admisiones" className="btn btn-primary btn-sm w-full shrink-0 sm:w-auto">
+                Solicitar cupo
+              </Link>
+            </div>
           </div>
         </Reveal>
       </div>
