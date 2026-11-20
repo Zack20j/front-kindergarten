@@ -1,4 +1,4 @@
-import { Channel } from "@/types/post";
+import { Channel, ChannelApiName, ChannelId } from "@/types/post";
 
 export const CHANNELS: Channel[] = [
   {
@@ -10,6 +10,17 @@ export const CHANNELS: Channel[] = [
     color: "#0088cc",
   },
 ];
+
+export const CHANNEL_ID_BY_API: Record<ChannelApiName, ChannelId> = {
+  TELEGRAM: "telegram",
+  FACEBOOK: "facebook",
+  INSTAGRAM: "instagram",
+};
+
+export function getChannelLabel(apiName: ChannelApiName): string {
+  const id = CHANNEL_ID_BY_API[apiName];
+  return CHANNELS.find((channel) => channel.id === id)?.label ?? apiName;
+}
 
 export const DEFAULT_SELECTED_CHANNELS: Channel["id"][] = ["telegram"];
 

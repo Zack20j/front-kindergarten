@@ -6,7 +6,8 @@ import { ApiError } from "@/lib/api";
 import { formatDateTimeEs } from "@/lib/date";
 import { getEventApiMeta } from "@/data/eventCategories";
 import { changeEventStatus, deleteEvent, listAdminEvents } from "@/lib/events";
-import { changePostStatus, deletePost, listAdminPosts } from "@/lib/posts";
+import { CHANNEL_ID_BY_API, getChannelLabel } from "@/data/channels";
+import { changePostStatus, deletePost, listAdminPosts, retryPostChannel } from "@/lib/posts";
 import type { EventApiResponse } from "@/types/event";
 import type { PostApiResponse, PostStatus } from "@/types/post";
 
@@ -66,6 +67,25 @@ export default function ScheduleManager() {
     } catch (error) {
       setErrorMessage(
         error instanceof ApiError ? error.message : "No se pudo cambiar el estado."
+      );
+    } finally {
+      setBusyId(null);
+    }
+  };
+
+  const retryPostChannels = async (post: PostApiResponse) => {
+    setBusyId(`post-${post.id}`);
+    setErrorMessage(null);
+    try {
+      let updated = post;
+      for (const delivery of post.channels) {
+        if (delivery.status === "SENT") continue;
+        updated = await retryPostChannel(post.id, CHANNEL_ID_BY_API[delivery.channel]);
+      }
+      setPosts((prev) => prev.map((item) => (item.id === updated.id ? updated : item)));
+    } catch (error) {
+      setErrorMessage(
+        error instanceof ApiError ? error.message : "No se pudo reintentar el envío."
       );
     } finally {
       setBusyId(null);
@@ -237,6 +257,63 @@ export default function ScheduleManager() {
                     <p className="line-clamp-2 text-sm leading-relaxed text-on-surface-variant">
                       {post.caption}
                     </p>
+                    {post.channels.length > 0 && (
+                      <div className="mt-3 flex flex-wrap items-center gap-2">
+                        {post.channels.map((delivery) => (
+                          <span
+                            key={delivery.channel}
+                            title={delivery.errorMessage ?? undefined}
+                            className={[
+                              "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-bold",
+                              delivery.status === "SENT"
+                                ? "bg-secondary-container text-on-secondary-container"
+                                : delivery.status === "FAILED"
+                                  ? "bg-error-container text-on-error-container"
+                                  : "bg-surface-container text-on-surface-variant",
+                            ].join(" ")}
+                          >
+                            <span className="material-symbols-outlined text-[14px]" aria-hidden="true">
+                              {delivery.status === "SENT"
+                                ? "check_circle"
+                                : delivery.status === "FAILED"
+                                  ? "error"
+                                  : "schedule"}
+                            </span>
+                            {getChannelLabel(delivery.channel)}:{" "}
+                            {delivery.status === "SENT"
+                              ? "Enviado"
+                              : delivery.status === "FAILED"
+                                ? "Error"
+                                : "Pendiente"}
+                          </span>
+                        ))}
+                        {post.channels.some((delivery) => delivery.status !== "SENT") && (
+                          <button
+                            type="button"
+                            disabled={busy}
+                            onClick={() => void retryPostChannels(post)}
+                            className="rounded-full border border-primary/30 px-3 py-1 text-[11px] font-bold text-primary transition-colors hover:bg-primary-container/40 disabled:opacity-50"
+                          >
+                            Reintentar envío
+                          </button>
+                        )}
+                      </div>
+                    )}
+                    {post.channels.some(
+                      (delivery) => delivery.status === "FAILED" && delivery.errorMessage
+                    ) && (
+                      <p className="mt-2 text-xs font-semibold text-error">
+                        {post.channels
+                          .filter(
+                            (delivery) => delivery.status === "FAILED" && delivery.errorMessage
+                          )
+                          .map(
+                            (delivery) =>
+                              `${getChannelLabel(delivery.channel)}: ${delivery.errorMessage}`
+                          )
+                          .join(" · ")}
+                      </p>
+                    )}
                   </div>
                   <div className="flex shrink-0 flex-wrap gap-2">
                     <button

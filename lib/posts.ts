@@ -67,6 +67,12 @@ export function changePostStatus(id: number, status: PostStatus): Promise<PostAp
   });
 }
 
+export function retryPostChannel(id: number, channel: ChannelId): Promise<PostApiResponse> {
+  return authFetch<PostApiResponse>(`/posts/${id}/channels/${CHANNEL_API[channel]}/retry`, {
+    method: "POST",
+  });
+}
+
 export function deletePost(id: number): Promise<void> {
   return authFetch<void>(`/posts/${id}`, { method: "DELETE" });
 }

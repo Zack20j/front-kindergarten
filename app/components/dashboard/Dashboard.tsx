@@ -9,7 +9,7 @@ import BottomActionBar from "./BottomActionBar";
 import PublishedBanner from "./events/PublishedBanner";
 import DraftSavedBanner from "./events/DraftSavedBanner";
 import { useDashboardSidebarCollapsed } from "@/app/dashboard/DashboardLayout";
-import { CHANNELS, DEFAULT_SELECTED_CHANNELS, MAX_POST_LENGTH } from "@/data/channels";
+import { CHANNELS, DEFAULT_SELECTED_CHANNELS, getChannelLabel, MAX_POST_LENGTH } from "@/data/channels";
 import { ApiError } from "@/lib/api";
 import { changePostStatus, createPost, uploadMedia } from "@/lib/posts";
 import type { ChannelId, MediaItem } from "@/types/post";
@@ -126,9 +126,19 @@ export default function Dashboard() {
         channels: selectedChannels,
         mediaIds: media.map((item) => item.id),
       });
-      await changePostStatus(created.id, "PUBLISHED");
+      const published = await changePostStatus(created.id, "PUBLISHED");
       resetForm();
-      setJustPublished(true);
+      const failedChannel = published.channels.find((channel) => channel.status === "FAILED");
+      if (failedChannel) {
+        setJustPublished(false);
+        setErrorMessage(
+          `La publicación quedó en la web, pero ${getChannelLabel(failedChannel.channel)} falló: ${
+            failedChannel.errorMessage ?? "error desconocido"
+          }. Puedes reintentar el envío desde Publicaciones.`
+        );
+      } else {
+        setJustPublished(true);
+      }
     } catch (error) {
       setErrorMessage(
         error instanceof ApiError ? error.message : "No se pudo publicar la publicación."
