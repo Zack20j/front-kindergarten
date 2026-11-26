@@ -23,7 +23,8 @@ import type { PostApiResponse } from "@/types/post";
 const ENLACES = [
     { icon: Mail, title: "Correo institucional", href: "mailto:info@luisacaceres.edu.ve", iconColor: "text-tertiary", bgColor: "bg-tertiary-container" },
     { icon: BookOpen, title: "Libros didácticos", href: "/material/libros-didacticos", iconColor: "text-primary", bgColor: "bg-primary-container" },
-    { icon: Palette, title: "Para pintar", href: "/material/para-pintar", iconColor: "text-tertiary", bgColor: "bg-tertiary-container" },
+    { icon: Palette, title: "Para pintar", href: "/juegos", iconColor: "text-tertiary", bgColor: "bg-tertiary-container" },
+    // { icon: Palette, title: "Para pintar", href: "/material/para-pintar", iconColor: "text-tertiary", bgColor: "bg-tertiary-container" },
 ];
 
 const EPHEMERIS_LIMIT = 3;

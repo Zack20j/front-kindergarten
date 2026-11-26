@@ -1,0 +1,41 @@
+.fila {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: min(94vw, 720px);
+  padding: 16px;
+  border-radius: var(--kid-radio);
+  background: rgb(255 255 255 / 0.75);
+  box-shadow: var(--kid-sombra);
+}
+
+.fila svg { display: block; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+
+.hueco, .base { aspect-ratio: 1; min-width: 0; }
+.hueco { padding: 6px; border: 5px solid transparent; border-radius: 24px; background: transparent; cursor: pointer; }
+.guia { border-color: var(--kid-naranja); background: var(--kid-blanco); }
+.guia svg { animation: latir 0.9s ease-in-out infinite; }
+.puesta { cursor: default; animation: encajar 0.5s; }
+
+.pieza {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  border: 5px solid transparent;
+  border-radius: 24px;
+  background: transparent;
+  cursor: grab;
+}
+
+.fila .pieza { touch-action: none; }
+.pieza[aria-pressed='true'] { border-color: var(--kid-naranja); }
+.temblar { animation: temblar 0.45s; }
+
+@media (max-width: 480px) {
+  .fila { grid-template-columns: repeat(2, 1fr); width: min(86vw, 44vh); }
+}
+
+@keyframes latir { 50% { transform: scale(0.92); } }
+@keyframes encajar { 50% { transform: scale(1.2) rotate(8deg); } }
+@keyframes temblar { 25% { translate: -10px 0; } 75% { translate: 10px 0; } }

@@ -1,0 +1,59 @@
+.mesa {
+  --columnas: 3;
+  display: grid;
+  grid-template-columns: repeat(var(--columnas), 1fr);
+  gap: 16px;
+  width: min(94vw, 620px, 90vh);
+  container-type: inline-size;
+}
+
+.ocho { --columnas: 4; }
+
+.carta {
+  aspect-ratio: 3 / 4;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--kid-radio);
+  background: transparent;
+  perspective: 800px;
+  cursor: pointer;
+}
+
+.interior {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.visible .interior { transform: rotateY(180deg); }
+
+.dorso, .frente {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border: 6px solid var(--kid-blanco);
+  border-radius: var(--kid-radio);
+  box-shadow: var(--kid-sombra);
+  font-size: calc(52cqw / var(--columnas));
+  line-height: 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.dorso { background: radial-gradient(circle, #c29bff, var(--kid-morado)); }
+.frente { transform: rotateY(180deg); }
+.hallada { animation: premio 0.7s 0.4s; }
+.hallada .frente { border-color: var(--kid-verde); }
+
+/* En móvil, las 8 cartas se ven más grandes en 2 columnas */
+@media (max-width: 480px) {
+  .ocho { --columnas: 2; width: min(80vw, 64vh - 180px); gap: 12px; }
+  .ocho .carta { aspect-ratio: 1; }
+}
+
+@keyframes premio { 50% { transform: scale(1.12) rotate(4deg); } }
