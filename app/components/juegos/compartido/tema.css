@@ -1,0 +1,18 @@
+/* 🎨 Cambia aquí los colores y formas de TODOS los juegos */
+:root {
+  --kid-fondo-1: #bfe9ff;
+  --kid-fondo-2: #fff3c4;
+  --kid-tinta: #2b2350;
+  --kid-blanco: #ffffff;
+  --kid-rojo: #ff5a6e;
+  --kid-naranja: #ff9f1c;
+  --kid-amarillo: #ffd60a;
+  --kid-verde: #2ec45a;
+  --kid-azul: #2f9bff;
+  --kid-morado: #9b5de5;
+  --kid-rosa: #ff70c0;
+  --kid-radio: 28px;
+  --kid-sombra: 0 6px 0 rgb(43 35 80 / 0.18), 0 10px 24px rgb(43 35 80 / 0.14);
+  --kid-boton: 72px; /* tamaño mínimo táctil */
+  --kid-fuente: ui-rounded, 'Baloo 2', 'Comic Sans MS', 'Trebuchet MS', system-ui, sans-serif;
+}

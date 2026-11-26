@@ -1,0 +1,77 @@
+.mesa {
+  --ancho: min(92vw, 520px, 72vh);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  width: 100%;
+}
+
+.tablero {
+  width: var(--ancho);
+  aspect-ratio: 3 / 2;
+  display: grid;
+  grid-template-columns: repeat(var(--columnas), 1fr);
+  gap: 4px;
+  padding: 8px;
+  border-radius: var(--kid-radio);
+  background: var(--kid-blanco);
+  box-shadow: var(--kid-sombra);
+}
+
+.mesa svg { display: block; width: 100%; height: 100%; pointer-events: none; }
+
+.hueco {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 3px dashed #8a83b0;
+  border-radius: 14px;
+  background: var(--kid-blanco);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.hueco svg { opacity: 0.25; } /* silueta guía */
+.puesta { border: 0; cursor: default; animation: encajar 0.5s; }
+.puesta svg { opacity: 1; }
+.guia { border: 6px solid var(--kid-naranja); }
+.guia svg { opacity: 0.5; animation: latir 0.9s ease-in-out infinite; }
+
+.bandeja {
+  display: grid;
+  grid-template-columns: repeat(var(--columnas), 1fr);
+  gap: 14px;
+  width: var(--ancho);
+}
+
+.base { aspect-ratio: calc(3 / var(--columnas)) / 1; border-radius: 16px; background: rgb(255 255 255 / 0.45); }
+
+.pieza {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 5px solid var(--kid-blanco);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--kid-sombra);
+  cursor: grab;
+}
+
+/* Imprescindible para arrastrar en pantallas táctiles sin hacer scroll */
+.mesa .pieza { touch-action: none; }
+.pieza[aria-pressed='true'] { border-color: var(--kid-naranja); }
+.temblar { animation: temblar 0.45s; }
+
+/* En pantallas anchas la bandeja queda al lado del tablero */
+@media (orientation: landscape) and (min-width: 800px) {
+  .mesa { --ancho: min(44vw, 500px, 80vh); }
+}
+
+@keyframes latir { 50% { transform: scale(0.94); } }
+@keyframes encajar { 50% { transform: scale(1.08); } }
+@keyframes temblar { 25% { translate: -10px 0; } 75% { translate: 10px 0; } }

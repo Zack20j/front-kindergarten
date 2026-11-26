@@ -1,0 +1,74 @@
+.juego { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 28px; }
+
+.tablero {
+  --ancho: min(92vw, 520px, 68vh);
+  position: relative;
+  width: var(--ancho);
+  height: var(--ancho);
+  display: grid;
+  grid-template: repeat(var(--lado), 1fr) / repeat(var(--lado), 1fr);
+  border: 8px solid #17823d;
+  border-radius: var(--kid-radio);
+  background: #52c765;
+  box-shadow: var(--kid-sombra);
+  overflow: hidden;
+  touch-action: none; /* evita el scroll al guiar con el dedo */
+  cursor: pointer;
+  container-type: size;
+}
+
+.arbusto, .camino {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 0;
+  line-height: 1;
+}
+
+.arbusto { font-size: 11cqw; }
+.camino { background: #ffe6ad; }
+.pisado { background: #ffd166; }
+.siguiente { animation: brillar 1s ease-in-out infinite; }
+.punto { width: 22%; height: 22%; border-radius: 50%; background: var(--kid-naranja); }
+.meta { font-size: 13cqw; animation: latir 1s ease-in-out infinite; }
+
+.heroe {
+  position: absolute;
+  width: calc(100% / var(--lado));
+  height: calc(100% / var(--lado));
+  display: grid;
+  place-items: center;
+  font-size: 14cqw;
+  line-height: 1;
+  pointer-events: none;
+  transition: left 0.2s, top 0.2s;
+}
+
+.feliz span { animation: bailar 0.5s ease-in-out infinite alternate; }
+
+.flechas {
+  display: grid;
+  grid-template-columns: repeat(3, var(--kid-boton));
+  grid-template-areas: '. arriba .' 'izquierda abajo derecha';
+  gap: 12px;
+}
+
+.flechas button {
+  height: var(--kid-boton);
+  border: 0;
+  border-radius: 22px;
+  background: var(--kid-blanco);
+  box-shadow: var(--kid-sombra);
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.flechas button:active { transform: translateY(4px) scale(0.94); background: var(--kid-amarillo); }
+.arriba { grid-area: arriba; }
+.izquierda { grid-area: izquierda; }
+.abajo { grid-area: abajo; }
+.derecha { grid-area: derecha; }
+
+@keyframes brillar { 50% { background: #fff; } }
+@keyframes latir { 50% { transform: scale(1.2); } }
+@keyframes bailar { from { transform: rotate(-18deg); } to { transform: rotate(18deg) scale(1.15); } }
